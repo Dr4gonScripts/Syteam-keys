@@ -22,6 +22,9 @@ Section:AddSlider({
 	Min = 16,
 	Max = 100,
 	Default = 16,
+	Color = Color3.fromRGB(0, 150, 255), -- Cor azul para a barra
+	Increment = 1, -- Muda o valor de 1 em 1
+	ValueName = "speed", -- Adiciona 'speed' depois do valor
 	Callback = function(value)
 		local character = game.Players.LocalPlayer.Character
 		if character then
@@ -39,6 +42,9 @@ Section:AddSlider({
 	Min = 50,
 	Max = 250,
 	Default = 50,
+	Color = Color3.fromRGB(0, 255, 0), -- Cor verde para a barra
+	Increment = 5, -- Muda o valor de 5 em 5
+	ValueName = "power", -- Adiciona 'power' depois do valor
 	Callback = function(value)
 		local character = game.Players.LocalPlayer.Character
 		if character then
