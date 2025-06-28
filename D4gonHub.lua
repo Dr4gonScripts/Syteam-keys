@@ -20,7 +20,6 @@ local Window = Rayfield:CreateWindow({
 })
 
 local AuraHub = Window:CreateTab("XD4X Hub", 4483362458)
-
 local SectionMain = AuraHub:CreateSection("Funções Principais")
 
 -- God Speed (Toggle)
@@ -127,5 +126,88 @@ AuraHub:CreateButton({
     end,
     SectionParent = SectionMain
 })
+
+-- Função pra criar abas e botões de scripts
+local function createGameTab(name)
+    local tab = Window:CreateTab(name, 4483362458)
+    local section = tab:CreateSection(name .. " Scripts")
+    return tab, section
+end
+
+local function createScriptButton(section, scriptName)
+    section:CreateButton({
+        Name = scriptName,
+        Callback = function()
+            Rayfield:Notify({
+                Title = "XD4X Hub",
+                Content = scriptName .. " executado!",
+                Duration = 4
+            })
+            -- Coloque aqui o código real do script
+        end
+    })
+end
+
+-- Abas e scripts:
+
+local musclesTab, musclesSection = createGameTab("Muscles Legends")
+createScriptButton(musclesSection, "Speed Hub X")
+createScriptButton(musclesSection, "Beamed V2 (key: Benishot)")
+createScriptButton(musclesSection, "ML V1")
+createScriptButton(musclesSection, "KTM (key: KTMx2025)")
+
+local bloxTab, bloxSection = createGameTab("Blox Fruits")
+createScriptButton(bloxSection, "Speed Hub X")
+createScriptButton(bloxSection, "Redz Hub")
+createScriptButton(bloxSection, "Alchemy Hub Beta Edition")
+createScriptButton(bloxSection, "Cokka Hub")
+
+local brainrotTab, brainrotSection = createGameTab("Roube um Brainrot")
+createScriptButton(brainrotSection, "Moskvv Hub")
+createScriptButton(brainrotSection, "Fenorik Hub")
+createScriptButton(brainrotSection, "Nabaru Hub")
+createScriptButton(brainrotSection, "oRee Hub")
+createScriptButton(brainrotSection, "Makal Hub")
+
+local growTab, growSection = createGameTab("Grow a Garden")
+createScriptButton(growSection, "Speed Hub X")
+createScriptButton(growSection, "No-Lag Hub")
+createScriptButton(growSection, "ThunderZ Hub")
+createScriptButton(growSection, "Dupe GAG")
+createScriptButton(growSection, "Lunor Hub")
+
+local nightTab, nightSection = createGameTab("99 Noites na Floresta")
+createScriptButton(nightSection, "Fast Hub")
+createScriptButton(nightSection, "EF Hub")
+createScriptButton(nightSection, "H4x Hub")
+
+local blueLockTab, blueLockSection = createGameTab("Blue Lock Rivais")
+createScriptButton(blueLockSection, "Alchemy Hub")
+
+local forsakenTab, forsakenSection = createGameTab("Forsaken")
+createScriptButton(forsakenSection, "Funny Hub")
+
+local deadRailsTab, deadRailsSection = createGameTab("Dead Rails")
+createScriptButton(deadRailsSection, "Tbao Hub")
+createScriptButton(deadRailsSection, "Than Hub")
+createScriptButton(deadRailsSection, "Native Hub")
+createScriptButton(deadRailsSection, "Speed Hub X")
+
+local ariseTab, ariseSection = createGameTab("Arise Crossover")
+ariseSection:CreateLabel("♟ Arise Crossover - Em breve...")
+
+local carTab, carSection = createGameTab("Car Dealership Tycoon")
+createScriptButton(carSection, "Auto Farm - JuninhoOGado")
+createScriptButton(carSection, "Norepinefina Hub")
+createScriptButton(carSection, "Auto Race")
+
+local bedWarsTab, bedWarsSection = createGameTab("Bed Wars")
+createScriptButton(bedWarsSection, "VapeVoid Hub")
+
+local raceTab, raceSection = createGameTab("Race Clicker")
+createScriptButton(raceSection, "Auto farm")
+
+local standTab, standSection = createGameTab("Stand Awakening")
+createScriptButton(standSection, "Auto farm")
 
 Rayfield:LoadConfiguration()
