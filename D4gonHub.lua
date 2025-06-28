@@ -58,6 +58,73 @@ Section:AddToggle({
 	end
 })
 
+
+-- ==================================================================================================
+-- CÓDIGO DO AIMBOT INTEGRADO AQUI
+-- ==================================================================================================
+-- Variáveis e configurações do script de Aimbot
+local fov = 100 -- O raio do círculo FOV. Ajuste este valor.
+local maxTransparency = 0.1 -- Transparência máxima dentro do círculo (0.1 = 10%)
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local Cam = game.Workspace.CurrentCamera
+
+-- Cria o círculo visual do FOV
+local FOVring = Drawing.new("Circle")
+FOVring.Visible = false -- Começa invisível
+FOVring.Thickness = 2
+FOVring.Color = Color3.fromRGB(128, 0, 128) -- Cor roxa
+FOVring.Filled = false
+FOVring.Radius = fov
+
+-- Função para atualizar a posição do círculo na tela
+local function updateDrawings()
+    local camViewportSize = Cam.ViewportSize
+    FOVring.Position = camViewportSize / 2
+end
+
+-- Função para calcular a transparência do círculo
+local function calculateTransparency(distance)
+    local maxDistance = fov
+    local transparency = (1 - (distance / maxDistance)) * maxTransparency
+    return transparency
+end
+
+-- Função para mirar na posição do alvo
+local function lookAt(target)
+    local lookVector = (target - Cam.CFrame.Position).unit
+    local newCFrame = CFrame.new(Cam.CFrame.Position, Cam.CFrame.Position + lookVector)
+    Cam.CFrame = newCFrame
+end
+
+-- Função para encontrar o jogador mais próximo dentro do FOV
+local function getClosestPlayerInFOV(trg_part)
+    local nearest = nil
+    local last = math.huge
+    local playerMousePos = Cam.ViewportSize / 2
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= Players.LocalPlayer and player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
+            local part = player.Character and player.Character:FindFirstChild(trg_part)
+            if part then
+                local ePos, isVisible = Cam:WorldToViewportPoint(part.Position)
+                local distance = (Vector2.new(ePos.x, ePos.y) - playerMousePos).Magnitude
+
+                if distance < last and isVisible and distance < fov then
+                    last = distance
+                    nearest = player
+                end
+            end
+        end
+    end
+
+    return nearest
+end
+-- ==================================================================================================
+-- FIM DO CÓDIGO DO AIMBOT
+-- ==================================================================================================
+
+
 -- Cria uma nova seção para organizar os botões de utilidade
 local UtilitySection = Tab:AddSection({
 	Name = "⚙️ Combat & Utility"
@@ -116,15 +183,27 @@ UtilitySection:AddToggle({
 		if Value then
 			-- Se o botão estiver LIGADO, inicia o loop de mira
 			print("Aimbot: ON")
-			aimbotLoopConnection = game:GetService("RunService").RenderStepped:Connect(function()
-				-- >>> COLOQUE SUA LÓGICA DE AIMBOT AQUI <<<
-				-- Você precisa encontrar o inimigo mais próximo e ajustar a CFrame da sua câmera ou arma.
-				-- Esta é uma lógica complexa que depende do jogo.
-				-- Exemplo: CFrame.new(player.Character.Head.Position, target.Character.Head.Position)
-			end)
+            FOVring.Visible = true -- Torna o círculo FOV visível
+            -- Conecta a função de mira e desenho ao RenderStepped
+			aimbotLoopConnection = RunService.RenderStepped:Connect(function()
+                updateDrawings()
+                local closest = getClosestPlayerInFOV("Head")
+                if closest and closest.Character:FindFirstChild("Head") then
+                    lookAt(closest.Character.Head.Position)
+                end
+                
+                if closest then
+                    local ePos, isVisible = Cam:WorldToViewportPoint(closest.Character.Head.Position)
+                    local distance = (Vector2.new(ePos.x, ePos.y) - (Cam.ViewportSize / 2)).Magnitude
+                    FOVring.Transparency = calculateTransparency(distance)
+                else
+                    FOVring.Transparency = maxTransparency -- Mantenha a transparência máxima quando não houver alvo
+                end
+            end)
 		else
 			-- Se o botão estiver DESLIGADO, para o loop de mira
 			print("Aimbot: OFF")
+            FOVring.Visible = false -- Torna o círculo FOV invisível
 			if aimbotLoopConnection then
 				aimbotLoopConnection:Disconnect()
 				aimbotLoopConnection = nil
@@ -134,39 +213,17 @@ UtilitySection:AddToggle({
 })
 
 
--- Botão para ESP (Ver jogadores através das paredes)
-local espLoopConnection = nil
-local espGuiContainer = Instance.new("ScreenGui")
-espGuiContainer.Name = "ESPGui"
-espGuiContainer.Parent = game:GetService("CoreGui")
-
-UtilitySection:AddToggle({
-	Name = "ESP",
-	Default = false, -- Começa desligado
-	Callback = function(Value)
-		if Value then
-			-- Se o botão estiver LIGADO, inicia o loop de ESP
-			print("ESP: ON")
-			espLoopConnection = game:GetService("RunService").RenderStepped:Connect(function()
-				-- >>> COLOQUE SUA LÓGICA DE ESP AQUI <<<
-				-- Você precisa criar caixas 2D, linhas ou texto para cada jogador e atualizá-los a cada frame.
-				-- Isso envolve WorldToViewportPoint e cálculos de posição.
-				-- Exemplo: for _, player in pairs(game.Players:GetPlayers()) do ... end
-			end)
-		else
-			-- Se o botão estiver DESLIGADO, para o loop e destrói o GUI
-			print("ESP: OFF")
-			if espLoopConnection then
-				espLoopConnection:Disconnect()
-				espLoopConnection = nil
-			end
-			-- Destrói todos os elementos visuais do ESP
-			for _, child in ipairs(espGuiContainer:GetChildren()) do
-				child:Destroy()
-			end
-		end
+-- Botão para ESP (Executa um script externo)
+-- *** ESTE BOTÃO SUBSTITUIU O BOTÃO DE ESP ANTERIOR ***
+UtilitySection:AddButton({
+	Name = "Execute ESP (Link Externo)",
+	Callback = function()
+		-- AVISO: Execute scripts de fontes desconhecidas por sua conta e risco.
+		print("Executando script de ESP do GitHub...")
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/wa0101/Roblox-ESP/refs/heads/main/esp.lua",true))()
 	end
 })
+
 
 -- Botão para mudar o FOV (Campo de Visão)
 UtilitySection:AddToggle({
