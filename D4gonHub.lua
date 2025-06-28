@@ -19,7 +19,6 @@ local Window = Rayfield:CreateWindow({
     KeySystem = false,
 })
 
--- Aba Principal e Funções Principais
 local MainTab = Window:CreateTab("XD4X Hub", 4483362458)
 local SectionMain = MainTab:CreateSection("Funções Principais")
 
@@ -100,19 +99,21 @@ SectionMain:CreateButton({
     end,
 })
 
--- Função auxiliar para criar botões dentro da seção
+-- Função corrigida para criação dos botões dentro das seções
 local function CreateButtonsInSection(tabName, sectionName, buttons)
     local tab = Window:CreateTab(tabName, 4483345998)
     local section = tab:CreateSection(sectionName)
     for _, btn in ipairs(buttons) do
-        section:CreateButton({
+        tab:CreateButton({
             Name = btn.Name,
             Callback = btn.Callback,
+            SectionParent = section
         })
     end
 end
 
--- Abas e botões (scripts)
+-- Criando as abas e botões conforme seu antigo script
+
 CreateButtonsInSection("Muscles Legends", "🦾 Auto Farm", {
     {Name = "Speed Hub X", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))() end},
     {Name = "Beamed V2 (key: Benishot)", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/ben1x1x1x1x/V2/refs/heads/main/BeamedV2FreeLoader"))() end},
@@ -168,7 +169,6 @@ CreateButtonsInSection("Dead Rails", "💴 Auto Bound", {
     {Name = "Speed Hub X", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))() end},
 })
 
--- Aba Arise Crossover - só a seção de aviso (sem botões)
 local ARTab = Window:CreateTab("Arise Crossover", 4483345998)
 ARTab:CreateSection("♟ Arise Crossover - Em breve...")
 
