@@ -1,7 +1,7 @@
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
 
 local Window = OrionLib:MakeWindow({
-	Name = "ROBLOKI 6.2.9",
+	Name = "ROBLOKI HUB 6.2.9",
 	HidePremium = false,
 	SaveConfig = true,
 	ConfigFolder = "Project segredo"
@@ -138,6 +138,72 @@ GGTab:AddButton({
 	Name = "ThunderZ",
 	Callback = function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/ThundarZ/Welcome/refs/heads/main/Main/GaG/Main.lua'))()
+	end    
+})
+
+-- ABA DEAD RAILS
+
+local DRTab = Window:MakeTab({
+	Name = "🐺 Dead Rails",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local fiveSection = DRTab:AddSection({
+	Name = "🤠 Auto Bound"
+})
+
+DRTab:AddButton({
+	Name = "Tbao Hub",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails'))()
+	end    
+})
+
+DRTab:AddButton({
+	Name = "Native Hub",
+	Callback = function()
+		loadstring(game:HttpGet('https://getnative.cc/script/loader'))()
+	end    
+})
+
+DRTab:AddButton({
+	Name = "Speed Hub X",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua'))()
+	end    
+})
+
+-- 99 NOITES EM UMA FLORESTA
+
+local NFTab = Window:MakeTab({
+	Name = "🐾 99 Noite em uma floresta ",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local sixSection = NFTab:AddSection({
+	Name = "🔦 Auto Farm"
+})
+
+NFTab:AddButton({
+	Name = "Fast Hub",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/adibhub1/99-nighit-in-forest/refs/heads/main/99%20night%20in%20forest'))()
+	end    
+})
+
+NFTab:AddButton({
+	Name = "H4X Hub",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/H4xScripts/Loader/refs/heads/main/loader.lua'))()
+	end    
+})
+
+NFTab:AddButton({
+	Name = "EF Hub",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/1craku/Test/refs/heads/main/99%20Nights%20in%20the%20Forest%202'))()
 	end    
 })
 
