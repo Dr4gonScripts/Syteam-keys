@@ -1,7 +1,7 @@
 -- ==================================================================================================
 -- INICIALIZAÇÃO DA BIBLIOTECA ORION
 -- ==================================================================================================
-local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Shylc/scripts/main/orion.lua"))()
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/whtsky/OrionLib-v2-re/main/Orion.lua"))()
 
 local Window = OrionLib:MakeWindow({Name = "D4gon Hub - @draknessxz - discord", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
