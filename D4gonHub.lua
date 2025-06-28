@@ -48,7 +48,7 @@ Section:AddToggle({
 			if humanoid then
 				if Value then
 					-- Se o botão estiver LIGADO
-					humanoid.JumpPower = 300
+					humanoid.JumpPower = 500
 				else
 					-- Se o botão estiver DESLIGADO, volta ao pulo normal
 					humanoid.JumpPower = 50
