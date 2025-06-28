@@ -1,3 +1,6 @@
+-- ==================================================================================================
+-- INICIALIZAÇÃO DA BIBLIOTECA ORION
+-- ==================================================================================================
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({Name = "D4gon Hub - @draknessxz - discord", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
@@ -13,52 +16,90 @@ local Section = Tab:AddSection({
 })
 
 -- ==================================================================================================
--- BARRA DE PESQUISA COM LÓGICA DE FILTRAGEM (NOVO CÓDIGO AQUI)
+-- INÍCIO DA LÓGICA DO SUPER JUMP (CÓDIGO OTIMIZADO)
 -- ==================================================================================================
 
--- Esta função percorre todas as seções de uma aba e filtra seus elementos
-local function filterAllSections(tab, searchText)
-    local hasSearchText = #searchText > 0
-    local lowerSearchText = string.lower(searchText)
-    
-    -- task.spawn é usado para evitar travar a UI durante a filtragem
-    task.spawn(function()
-        -- Percorre todos os filhos da aba (Tab) para encontrar as seções
-        for _, sectionFrame in ipairs(tab.Frame:GetChildren()) do
-            -- Verifica se o Frame é uma seção de elementos (Section)
-            if sectionFrame:IsA("Frame") and sectionFrame.Name == "Section" and sectionFrame:FindFirstChild("Frame") then
-                -- Percorre os elementos dentro da seção
-                for _, item in ipairs(sectionFrame.Frame:GetChildren()) do
-                    -- Verifica se o elemento tem um rótulo de nome para filtrar
-                    if item:IsA("Frame") and item:FindFirstChild("NameLabel") then
-                        local nameLabel = item.NameLabel
-                        local itemName = string.lower(nameLabel.Text)
-                        
-                        -- Se a caixa de pesquisa estiver vazia, mostre todos os elementos
-                        if not hasSearchText then
-                            item.Visible = true
-                        else
-                            -- Caso contrário, mostre apenas se o nome contiver o texto pesquisado
-                            if string.find(itemName, lowerSearchText, 1, true) then
-                                item.Visible = true
-                            else
-                                item.Visible = false
-                            end
-                        end
-                    end
-                end
+-- Obtém o serviço de jogadores e o jogador local
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Cria uma variável para armazenar o estado do super pulo
+local superJumpEnabled = false
+
+-- Função para atualizar o JumpPower do personagem.
+-- Esta função pode ser chamada a qualquer momento para aplicar o pulo.
+local function updateJumpPower()
+    local character = LocalPlayer.Character
+    if character then
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            if superJumpEnabled then
+                -- Se o super pulo estiver LIGADO, define o JumpPower para 300
+                humanoid.JumpPower = 300
+            else
+                -- Se estiver DESLIGADO, volta ao JumpPower padrão de 50
+                humanoid.JumpPower = 50
             end
         end
-    end)
+    end
 end
 
--- A barra de pesquisa é adicionada como o primeiro elemento da seção Main Hub
+-- Conecta a função de atualização ao evento CharacterAdded.
+-- Isso é CRUCIAL! Garante que o super pulo seja aplicado toda vez que o jogador
+-- renascer, pois um novo personagem é criado.
+LocalPlayer.CharacterAdded:Connect(function(character)
+    -- Espera que o Humanoid carregue para evitar erros
+    character:WaitForChild("Humanoid")
+    -- Aplica o JumpPower com base no estado atual do botão
+    updateJumpPower()
+end)
+
+-- Se o personagem já estiver no jogo quando o script carregar,
+-- aplique o JumpPower inicial (que é o padrão de 50).
+if LocalPlayer.Character then
+    updateJumpPower()
+end
+
+-- ==================================================================================================
+-- FIM DA LÓGICA DO SUPER JUMP
+-- ==================================================================================================
+
+
+-- ==================================================================================================
+-- BARRA DE PESQUISA COM LÓGICA DE FILTRAGEM
+-- ==================================================================================================
+local function filterAllSections(tab, searchText)
+    local hasSearchText = #searchText > 0
+    local lowerSearchText = string.lower(searchText)
+    
+    task.spawn(function()
+        for _, sectionFrame in ipairs(tab.Frame:GetChildren()) do
+            if sectionFrame:IsA("Frame") and sectionFrame.Name == "Section" and sectionFrame:FindFirstChild("Frame") then
+                for _, item in ipairs(sectionFrame.Frame:GetChildren()) do
+                    if item:IsA("Frame") and item:FindFirstChild("NameLabel") then
+                        local nameLabel = item.NameLabel
+                        local itemName = string.lower(nameLabel.Text)
+                        
+                        if not hasSearchText then
+                            item.Visible = true
+                        else
+                            if string.find(itemName, lowerSearchText, 1, true) then
+                                item.Visible = true
+                            else
+                                item.Visible = false
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end
+
 Section:AddTextbox({
 	Name = "Pesquisar",
-	Default = "", -- Texto padrão vazio
-	-- A função Callback é executada toda vez que o texto na caixa de pesquisa muda
+	Default = "",
 	Callback = function(text)
-		-- Chama a função de filtro para a aba "Main"
 		filterAllSections(Tab, text)
 	end
 })
@@ -74,17 +115,15 @@ Section:AddTextbox({
 -- Botão para Walk Speed (16 -> 100)
 Section:AddToggle({
 	Name = "God Speed (On/Off)",
-	Default = false, -- Começa desligado
+	Default = false,
 	Callback = function(Value)
 		local character = game:GetService("Players").LocalPlayer.Character
 		if character then
 			local humanoid = character:FindFirstChildOfClass("Humanoid")
 			if humanoid then
 				if Value then
-					-- Se o botão estiver LIGADO
 					humanoid.WalkSpeed = 100
 				else
-					-- Se o botão estiver DESLIGADO, volta à velocidade normal
 					humanoid.WalkSpeed = 16
 				end
 			end
@@ -92,38 +131,15 @@ Section:AddToggle({
 	end
 })
 
--- Botão para Jump Power (50 -> 300)
--- Obtém o serviço de jogadores
-local Players = game:GetService("Players")
--- Obtém o jogador local
-local LocalPlayer = Players.LocalPlayer
-
--- Cria o botão de alternância
+-- Botão para Jump Power (50 -> 300) - AGORA USANDO A LÓGICA OTIMIZADA!
 Section:AddToggle({
 	Name = "Super Jump (On/Off)",
-	Default = false, -- Começa desligado
+	Default = false,
 	Callback = function(Value)
-		-- Conecta a uma função que garante que o personagem está carregado
-		local function onCharacterAdded(character)
-			local humanoid = character:WaitForChild("Humanoid")
-			if humanoid then
-				if Value then
-					-- Se o botão estiver LIGADO
-					humanoid.JumpPower = 300
-				else
-					-- Se o botão estiver DESLIGADO, volta ao pulo normal
-					humanoid.JumpPower = 50
-				end
-			end
-		end
-		
-		-- Conecta a função ao evento CharacterAdded
-		LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
-		
-		-- Se o personagem já existir no momento em que a função é chamada, atualize-o
-		if LocalPlayer.Character then
-			onCharacterAdded(LocalPlayer.Character)
-		end
+        -- Apenas atualiza o estado e chama a função de atualização.
+        -- O evento CharacterAdded já está conectado no início do script.
+		superJumpEnabled = Value
+        updateJumpPower()
 	end
 })
 
@@ -134,7 +150,6 @@ Section:AddToggle({
 local fov = 100 -- O raio do círculo FOV. Ajuste este valor.
 local maxTransparency = 0.1 -- Transparência máxima dentro do círculo (0.1 = 10%)
 local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
 local Cam = game.Workspace.CurrentCamera
 
 -- Cria o círculo visual do FOV
@@ -147,46 +162,46 @@ FOVring.Radius = fov
 
 -- Função para atualizar a posição do círculo na tela
 local function updateDrawings()
-    local camViewportSize = Cam.ViewportSize
-    FOVring.Position = camViewportSize / 2
+    local camViewportSize = Cam.ViewportSize
+    FOVring.Position = camViewportSize / 2
 end
 
 -- Função para calcular a transparência do círculo
 local function calculateTransparency(distance)
-    local maxDistance = fov
-    local transparency = (1 - (distance / maxDistance)) * maxTransparency
-    return transparency
+    local maxDistance = fov
+    local transparency = (1 - (distance / maxDistance)) * maxTransparency
+    return transparency
 end
 
 -- Função para mirar na posição do alvo
 local function lookAt(target)
-    local lookVector = (target - Cam.CFrame.Position).unit
-    local newCFrame = CFrame.new(Cam.CFrame.Position, Cam.CFrame.Position + lookVector)
-    Cam.CFrame = newCFrame
+    local lookVector = (target - Cam.CFrame.Position).unit
+    local newCFrame = CFrame.new(Cam.CFrame.Position, Cam.CFrame.Position + lookVector)
+    Cam.CFrame = newCFrame
 end
 
 -- Função para encontrar o jogador mais próximo dentro do FOV
 local function getClosestPlayerInFOV(trg_part)
-    local nearest = nil
-    local last = math.huge
-    local playerMousePos = Cam.ViewportSize / 2
+    local nearest = nil
+    local last = math.huge
+    local playerMousePos = Cam.ViewportSize / 2
 
-    for _, player in ipairs(Players:GetPlayers()) do
-        if player ~= Players.LocalPlayer and player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
-            local part = player.Character and player.Character:FindFirstChild(trg_part)
-            if part then
-                local ePos, isVisible = Cam:WorldToViewportPoint(part.Position)
-                local distance = (Vector2.new(ePos.x, ePos.y) - playerMousePos).Magnitude
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= Players.LocalPlayer and player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
+            local part = player.Character and player.Character:FindFirstChild(trg_part)
+            if part then
+                local ePos, isVisible = Cam:WorldToViewportPoint(part.Position)
+                local distance = (Vector2.new(ePos.x, ePos.y) - playerMousePos).Magnitude
 
-                if distance < last and isVisible and distance < fov then
-                    last = distance
-                    nearest = player
-                end
-            end
-        end
-    end
+                if distance < last and isVisible and distance < fov then
+                    last = distance
+                    nearest = player
+                end
+            end
+        end
+    end
 
-    return nearest
+    return nearest
 end
 -- ==================================================================================================
 -- FIM DO CÓDIGO DO AIMBOT
@@ -246,32 +261,29 @@ UtilitySection:AddToggle({
 local aimbotLoopConnection = nil
 UtilitySection:AddToggle({
 	Name = "Aimbot",
-	Default = false, -- Começa desligado
+	Default = false,
 	Callback = function(Value)
 		if Value then
-			-- Se o botão estiver LIGADO, inicia o loop de mira
 			print("Aimbot: ON")
-            FOVring.Visible = true -- Torna o círculo FOV visível
-            -- Conecta a função de mira e desenho ao RenderStepped
-			aimbotLoopConnection = RunService.RenderStepped:Connect(function()
-                updateDrawings()
-                local closest = getClosestPlayerInFOV("Head")
-                if closest and closest.Character:FindFirstChild("Head") then
-                    lookAt(closest.Character.Head.Position)
-                end
-                
-                if closest then
-                    local ePos, isVisible = Cam:WorldToViewportPoint(closest.Character.Head.Position)
-                    local distance = (Vector2.new(ePos.x, ePos.y) - (Cam.ViewportSize / 2)).Magnitude
-                    FOVring.Transparency = calculateTransparency(distance)
-                else
-                    FOVring.Transparency = maxTransparency -- Mantenha a transparência máxima quando não houver alvo
-                end
-            end)
+            FOVring.Visible = true
+            aimbotLoopConnection = RunService.RenderStepped:Connect(function()
+                updateDrawings()
+                local closest = getClosestPlayerInFOV("Head")
+                if closest and closest.Character:FindFirstChild("Head") then
+                    lookAt(closest.Character.Head.Position)
+                end
+                
+                if closest then
+                    local ePos, isVisible = Cam:WorldToViewportPoint(closest.Character.Head.Position)
+                    local distance = (Vector2.new(ePos.x, ePos.y) - (Cam.ViewportSize / 2)).Magnitude
+                    FOVring.Transparency = calculateTransparency(distance)
+                else
+                    FOVring.Transparency = maxTransparency
+                end
+            end)
 		else
-			-- Se o botão estiver DESLIGADO, para o loop de mira
 			print("Aimbot: OFF")
-            FOVring.Visible = false -- Torna o círculo FOV invisível
+            FOVring.Visible = false
 			if aimbotLoopConnection then
 				aimbotLoopConnection:Disconnect()
 				aimbotLoopConnection = nil
@@ -282,11 +294,9 @@ UtilitySection:AddToggle({
 
 
 -- Botão para ESP (Executa um script externo)
--- *** ESTE BOTÃO SUBSTITUIU O BOTÃO DE ESP ANTERIOR ***
 UtilitySection:AddButton({
 	Name = "Execute ESP (Link Externo)",
 	Callback = function()
-		-- AVISO: Execute scripts de fontes desconhecidas por sua conta e risco.
 		print("Executando script de ESP do GitHub...")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/wa0101/Roblox-ESP/refs/heads/main/esp.lua",true))()
 	end
@@ -296,16 +306,14 @@ UtilitySection:AddButton({
 -- Botão para mudar o FOV (Campo de Visão)
 UtilitySection:AddToggle({
 	Name = "FOV Changer",
-	Default = false, -- Começa desligado
+	Default = false,
 	Callback = function(Value)
 		local camera = game:GetService("Workspace").CurrentCamera
 		if camera then
 			if Value then
-				-- Se o botão estiver LIGADO, muda o FOV
-				camera.FieldOfView = 120 -- Valor alto para uma visão ampla
+				camera.FieldOfView = 120
 			else
-				-- Se o botão estiver DESLIGADO, volta ao FOV normal
-				camera.FieldOfView = 70 -- Valor padrão do Roblox
+				camera.FieldOfView = 70
 			end
 		end
 	end
@@ -348,9 +356,11 @@ UtilitySection:AddButton({
 UtilitySection:AddButton({
 	Name = "Rejoin",
 	Callback = function()
-		print("Reiniciando o jogador para tentar um rejoin...")
-		-- Reinicia o jogador, o que geralmente força um rejoin no mesmo servidor
-		game:GetService("Players").LocalPlayer:LoadCharacter()
+		print("Tentando rejoin...")
+		-- Usa o TeleportService para teleportar o jogador de volta ao mesmo lugar,
+		-- o que força uma nova conexão com o servidor.
+        local TeleportService = game:GetService("TeleportService")
+		TeleportService:Teleport(game.PlaceId, LocalPlayer)
 	end
 })
 
@@ -360,7 +370,7 @@ UtilitySection:AddButton({
 
 local MusclesLegendsTab = Window:MakeTab({
 	Name = "Muscles Legends",
-	Icon = "rbxassetid://4483345998", -- Ícone de bíceps
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -406,7 +416,7 @@ AutoFarmSection:AddButton({
 
 local BloxFruitsTab = Window:MakeTab({
 	Name = "Blox Fruits",
-	Icon = "rbxassetid://4483345998", -- Ícone de uma fruta
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -452,7 +462,7 @@ BFSection:AddButton({
 
 local StealABrainrotTab = Window:MakeTab({
 	Name = "Roube um Brainrot",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -491,7 +501,7 @@ BrainrotSection:AddButton({
 
 local GrowGardenTab = Window:MakeTab({
 	Name = "Grow a Garden",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
