@@ -128,35 +128,36 @@ AuraHub:CreateButton({
     SectionParent = SectionMain
 })
 
-local MC = Window:CreateTab("Muscles Legends", 4483362458) -- Você quer criar a aba Muscles Legends, então mude o nome da aba aqui também
+local MC = Window:CreateTab("Muscles Legends", 4483362458)
 
-local SectionMCS = MC:CreateSection("🦾 Auto farms")
+MC:CreateSection("🦾 Auto farms")
 
-SectionMCS:CreateButton({
+MC:CreateButton({
     Name = "Speed Hub X",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
     end
 })
-SectionMCS:CreateButton({
+
+MC:CreateButton({
     Name = "KTM (key: KTMx2025)",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/zapstreams123/KTMHUB/refs/heads/main/PublicVersion", true))()
     end
 })
-SectionMCS:CreateButton({
-    Name = "Beamed V2 (key: Benishot ) ",
+
+MC:CreateButton({
+    Name = "Beamed V2 (key: Benishot)",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/zapstreams123/KTMHUB/refs/heads/main/PublicVersion", true))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ben1x1x1x1x/V2/refs/heads/main/BeamedV2FreeLoader", true))()
     end
 })
-SectionMCS:CreateButton({
+
+MC:CreateButton({
     Name = "Ml V1 Hub",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/2581235867/21/refs/heads/main/By%20Tokattk", true))()
     end
 })
-
-
 
 Rayfield:LoadConfiguration()
