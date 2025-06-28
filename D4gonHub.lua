@@ -339,7 +339,7 @@ UtilitySection:AddButton({
 
 local MusclesLegendsTab = Window:MakeTab({
 	Name = "Muscles Legends",
-	Icon = "rbxassetid://6034177212", -- Ícone de bíceps
+	Icon = "rbxassetid://4483345998", -- Ícone de bíceps
 	PremiumOnly = false
 })
 
@@ -385,7 +385,7 @@ AutoFarmSection:AddButton({
 
 local BloxFruitsTab = Window:MakeTab({
 	Name = "Blox Fruits",
-	Icon = "rbxassetid://6253456722", -- Ícone de uma fruta
+	Icon = "rbxassetid://4483345998", -- Ícone de uma fruta
 	PremiumOnly = false
 })
 
@@ -431,7 +431,7 @@ BFSection:AddButton({
 
 local StealABrainrotTab = Window:MakeTab({
 	Name = "Roube um Brainrot",
-	Icon = "rbxassetid://10492827663", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
 	PremiumOnly = false
 })
 
