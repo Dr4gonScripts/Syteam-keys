@@ -93,26 +93,39 @@ Section:AddToggle({
 })
 
 -- Botão para Jump Power (50 -> 300)
+-- Obtém o serviço de jogadores
+local Players = game:GetService("Players")
+-- Obtém o jogador local
+local LocalPlayer = Players.LocalPlayer
+
+-- Cria o botão de alternância
 Section:AddToggle({
 	Name = "Super Jump (On/Off)",
 	Default = false, -- Começa desligado
 	Callback = function(Value)
-		local character = game:GetService("Players").LocalPlayer.Character
-		if character then
-			local humanoid = character:FindFirstChildOfClass("Humanoid")
+		-- Conecta a uma função que garante que o personagem está carregado
+		local function onCharacterAdded(character)
+			local humanoid = character:WaitForChild("Humanoid")
 			if humanoid then
 				if Value then
 					-- Se o botão estiver LIGADO
-					humanoid.JumpPower = 500
+					humanoid.JumpPower = 300
 				else
 					-- Se o botão estiver DESLIGADO, volta ao pulo normal
 					humanoid.JumpPower = 50
 				end
 			end
 		end
+		
+		-- Conecta a função ao evento CharacterAdded
+		LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
+		
+		-- Se o personagem já existir no momento em que a função é chamada, atualize-o
+		if LocalPlayer.Character then
+			onCharacterAdded(LocalPlayer.Character)
+		end
 	end
 })
-
 
 -- ==================================================================================================
 -- CÓDIGO DO AIMBOT INTEGRADO AQUI
