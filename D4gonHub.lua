@@ -32,3 +32,33 @@ Section:AddToggle({
 		end
 	end
 })
+
+local UtilitySection = Tab:AddSection({
+	Name = "⚙️ Combat & Utility"
+})
+
+UtilitySection:AddButton({
+	Name = "Execute ESP (Link Externo)",
+	Callback = function()
+		-- AVISO: Execute scripts de fontes desconhecidas por sua conta e risco.
+		print("Executando script de ESP do GitHub...")
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/wa0101/Roblox-ESP/refs/heads/main/esp.lua",true))()
+	end
+})
+
+UtilitySection:AddToggle({
+	Name = "FOV Changer",
+	Default = false, -- Começa desligado
+	Callback = function(Value)
+		local camera = game:GetService("Workspace").CurrentCamera
+		if camera then
+			if Value then
+				-- Se o botão estiver LIGADO, muda o FOV
+				camera.FieldOfView = 120 -- Valor alto para uma visão ampla
+			else
+				-- Se o botão estiver DESLIGADO, volta ao FOV normal
+				camera.FieldOfView = 70 -- Valor padrão do Roblox
+			end
+		end
+	end
+})
