@@ -332,5 +332,3 @@ GameplaySection:AddToggle({
 -- FUNÇÃO OBRIGATÓRIA PARA INICIALIZAR A UI
 -- ==================================================================================================
 OrionLib:Init()
-
-Quero que arrume um erro que está acontecendo, está dando erro na linha local MovementSection = Tab:AddSection({ Name = "Movimento" })
