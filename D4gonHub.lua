@@ -16,41 +16,43 @@ local Section = Tab:AddSection({
 -- FUNÇÕES ADICIONADAS AQUI
 -- ==================================================================================================
 
--- Slider para Walk Speed
-Section:AddSlider({
-	Name = "Walk Speed",
-	Min = 16,
-	Max = 100,
-	Default = 16,
-	Color = Color3.fromRGB(0, 150, 255), -- Cor azul para a barra
-	Increment = 1, -- Muda o valor de 1 em 1
-	ValueName = "speed", -- Adiciona 'speed' depois do valor
-	Callback = function(value)
+-- Botão para Walk Speed (16 -> 100)
+Section:AddToggle({
+	Name = "God Speed (On/Off)",
+	Default = false, -- Começa desligado
+	Callback = function(Value)
 		local character = game.Players.LocalPlayer.Character
 		if character then
 			local humanoid = character:FindFirstChildOfClass("Humanoid")
 			if humanoid then
-				humanoid.WalkSpeed = value
+				if Value then
+					-- Se o botão estiver LIGADO
+					humanoid.WalkSpeed = 100
+				else
+					-- Se o botão estiver DESLIGADO, volta à velocidade normal
+					humanoid.WalkSpeed = 16
+				end
 			end
 		end
 	end
 })
 
--- Slider para Jump Power
-Section:AddSlider({
-	Name = "Jump Power",
-	Min = 50,
-	Max = 250,
-	Default = 50,
-	Color = Color3.fromRGB(0, 255, 0), -- Cor verde para a barra
-	Increment = 5, -- Muda o valor de 5 em 5
-	ValueName = "power", -- Adiciona 'power' depois do valor
-	Callback = function(value)
+-- Botão para Jump Power (50 -> 300)
+Section:AddToggle({
+	Name = "Super Jump (On/Off)",
+	Default = false, -- Começa desligado
+	Callback = function(Value)
 		local character = game.Players.LocalPlayer.Character
 		if character then
 			local humanoid = character:FindFirstChildOfClass("Humanoid")
 			if humanoid then
-				humanoid.JumpPower = value
+				if Value then
+					-- Se o botão estiver LIGADO
+					humanoid.JumpPower = 300
+				else
+					-- Se o botão estiver DESLIGADO, volta ao pulo normal
+					humanoid.JumpPower = 50
+				end
 			end
 		end
 	end
