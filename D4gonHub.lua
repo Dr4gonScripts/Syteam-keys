@@ -12,64 +12,7 @@ local Section = Tab:AddSection({
 	Name = "🔒 Main Hub"
 })
 
--- ==================================================================================================
--- BARRA DE PESQUISA COM LÓGICA DE FILTRAGEM (NOVO CÓDIGO AQUI)
--- ==================================================================================================
 
--- Esta função percorre todas as seções de uma aba e filtra seus elementos
-local function filterAllSections(tab, searchText)
-    local hasSearchText = #searchText > 0
-    local lowerSearchText = string.lower(searchText)
-    
-    -- task.spawn é usado para evitar travar a UI durante a filtragem
-    task.spawn(function()
-        -- Percorre todos os filhos da aba (Tab) para encontrar as seções
-        for _, sectionFrame in ipairs(tab.Frame:GetChildren()) do
-            -- Verifica se o Frame é uma seção de elementos (Section)
-            if sectionFrame:IsA("Frame") and sectionFrame.Name == "Section" and sectionFrame:FindFirstChild("Frame") then
-                -- Percorre os elementos dentro da seção
-                for _, item in ipairs(sectionFrame.Frame:GetChildren()) do
-                    -- Verifica se o elemento tem um rótulo de nome para filtrar
-                    if item:IsA("Frame") and item:FindFirstChild("NameLabel") then
-                        local nameLabel = item.NameLabel
-                        local itemName = string.lower(nameLabel.Text)
-                        
-                        -- Se a caixa de pesquisa estiver vazia, mostre todos os elementos
-                        if not hasSearchText then
-                            item.Visible = true
-                        else
-                            -- Caso contrário, mostre apenas se o nome contiver o texto pesquisado
-                            if string.find(itemName, lowerSearchText, 1, true) then
-                                item.Visible = true
-                            else
-                                item.Visible = false
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end)
-end
-
--- A barra de pesquisa é adicionada como o primeiro elemento da seção Main Hub
-Section:AddTextbox({
-	Name = "Pesquisar",
-	Default = "", -- Texto padrão vazio
-	-- A função Callback é executada toda vez que o texto na caixa de pesquisa muda
-	Callback = function(text)
-		-- Chama a função de filtro para a aba "Main"
-		filterAllSections(Tab, text)
-	end
-})
--- ==================================================================================================
--- FIM DO CÓDIGO DA BARRA DE PESQUISA
--- ==================================================================================================
-
-
--- ==================================================================================================
--- FUNÇÕES ABAIXO DA BARRA DE PESQUISA
--- ==================================================================================================
 
 -- Botão para Walk Speed (16 -> 100)
 Section:AddToggle({
