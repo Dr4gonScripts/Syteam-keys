@@ -138,7 +138,7 @@ KeySection:AddButton({
                 end
             })
 
-            --- Funções de Gameplay (NOVO) ---
+            --- Funções de Gameplay ---
             local GameplaySection = HubTab:AddSection("Gameplay")
 
             -- 1. Função ESP (Highlight)
@@ -283,6 +283,15 @@ KeySection:AddButton({
                 Description = "Clique para ver o link do servidor.",
                 Callback = function()
                     print("Link do Discord: " .. DISCORD_LINK)
+                end
+            })
+
+            -- NOVO: Botão para o Linktree
+            OtherSection:AddButton({
+                Name = "Meu Linktree",
+                Description = "Veja todas as minhas redes sociais.",
+                Callback = function()
+                    print("Linktree: https://linktr.ee/D4gonBRX")
                 end
             })
 
