@@ -19,68 +19,94 @@ local Window = Rayfield:CreateWindow({
     KeySystem = false,
 })
 
-local Tab = Window:CreateTab("XD4X Hub", 4483362458)
-local SectionMain = Tab:CreateSection("Main Features")
+local AuraHub = Window:CreateTab("XD4X Hub", 4483362458)
+local SectionMain = AuraHub:CreateSection("Funções Principais")
 
--- Toggle WalkSpeed
+-- God Speed (Toggle)
 SectionMain:CreateToggle({
     Name = "God Speed (16 ↔ 100)",
     CurrentValue = false,
-    Callback = function(active)
-        local player = game.Players.LocalPlayer
-        local character = player.Character
+    Callback = function(Value)
+        local character = game:GetService("Players").LocalPlayer.Character
         if character then
             local humanoid = character:FindFirstChildOfClass("Humanoid")
             if humanoid then
-                humanoid.WalkSpeed = active and 100 or 16
+                humanoid.WalkSpeed = Value and 100 or 16
             end
         end
     end,
 })
 
--- Toggle JumpPower
+-- Super Pulo (Toggle)
 SectionMain:CreateToggle({
-    Name = "Super Jump (50 ↔ 120)",
+    Name = "Super Pulo (50 ↔ 120)",
     CurrentValue = false,
-    Callback = function(active)
-        local player = game.Players.LocalPlayer
-        local character = player.Character
+    Callback = function(Value)
+        local character = game:GetService("Players").LocalPlayer.Character
         if character then
             local humanoid = character:FindFirstChildOfClass("Humanoid")
             if humanoid then
-                humanoid.JumpPower = active and 120 or 50
+                humanoid.JumpPower = Value and 120 or 50
             end
         end
     end,
 })
 
--- Anti-AFK toggle
-SectionMain:CreateToggle({
-    Name = "Anti-AFK",
-    CurrentValue = false,
-    Callback = function(active)
-        if active then
-            local vu = game:GetService("VirtualUser")
-            game.Players.LocalPlayer.Idled:Connect(function()
-                vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-                task.wait(1)
-                vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-            end)
-        end
-    end,
-})
-
--- Reset character button
+-- Anti-AFK (Button)
 SectionMain:CreateButton({
-    Name = "Reset Character",
+    Name = "Ativar Anti-AFK",
+    Callback = function()
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:Connect(function()
+            vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+            task.wait(1)
+            vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+        end)
+    end,
+})
+
+-- Fly simples (Button)
+SectionMain:CreateButton({
+    Name = "Ativar Fly",
     Callback = function()
         local player = game.Players.LocalPlayer
-        local character = player.Character
-        if character then
-            local humanoid = character:FindFirstChildOfClass("Humanoid")
-            if humanoid then
-                humanoid.Health = 0
+        local mouse = player:GetMouse()
+        local torso = player.Character:WaitForChild("HumanoidRootPart")
+        local speed = 2
+
+        local bg = Instance.new("BodyGyro", torso)
+        bg.P = 9e4
+        bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+        bg.cframe = torso.CFrame
+
+        local bv = Instance.new("BodyVelocity", torso)
+        bv.velocity = Vector3.new(0,0.1,0)
+        bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+
+        mouse.KeyDown:Connect(function(key)
+            if key == "w" then
+                bv.velocity = torso.CFrame.lookVector * speed
+            elseif key == "s" then
+                bv.velocity = -torso.CFrame.lookVector * speed
+            elseif key == "a" then
+                bv.velocity = -torso.CFrame.rightVector * speed
+            elseif key == "d" then
+                bv.velocity = torso.CFrame.rightVector * speed
+            elseif key == " " then
+                bv.velocity = Vector3.new(0, speed, 0)
             end
+        end)
+    end,
+})
+
+-- Resetar Personagem (Button)
+SectionMain:CreateButton({
+    Name = "Resetar Personagem",
+    Callback = function()
+        local character = game.Players.LocalPlayer.Character
+        local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.Health = 0
         end
     end,
 })
