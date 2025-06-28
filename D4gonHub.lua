@@ -19,20 +19,20 @@ local Window = Rayfield:CreateWindow({
     KeySystem = false,
 })
 
-local AuraHub = Window:CreateTab("XD4X Hub", 4483362458)
-local SectionMain = AuraHub:CreateSection("Funções Principais")
+local Tab = Window:CreateTab("XD4X Hub", 4483362458)
+local SectionMain = Tab:CreateSection("Main Features")
 
--- WalkSpeed Slider
-AuraHub:CreateSlider({
-    Name = "Walk Speed",
+-- WalkSpeed slider
+SectionMain:CreateSlider({
+    Name = "WalkSpeed",
     Min = 16,
     Max = 200,
     Default = 16,
     Increment = 1,
-    Suffix = " WalkSpeed",
-    SectionParent = SectionMain,
+    Suffix = "Speed",
     Callback = function(value)
-        local character = game.Players.LocalPlayer.Character
+        local player = game.Players.LocalPlayer
+        local character = player.Character
         if character then
             local humanoid = character:FindFirstChildOfClass("Humanoid")
             if humanoid then
@@ -42,17 +42,17 @@ AuraHub:CreateSlider({
     end,
 })
 
--- JumpPower Slider
-AuraHub:CreateSlider({
-    Name = "Jump Power",
+-- JumpPower slider
+SectionMain:CreateSlider({
+    Name = "JumpPower",
     Min = 50,
-    Max = 250,
+    Max = 300,
     Default = 50,
     Increment = 1,
-    Suffix = " JumpPower",
-    SectionParent = SectionMain,
+    Suffix = "Power",
     Callback = function(value)
-        local character = game.Players.LocalPlayer.Character
+        local player = game.Players.LocalPlayer
+        local character = player.Character
         if character then
             local humanoid = character:FindFirstChildOfClass("Humanoid")
             if humanoid then
@@ -62,29 +62,35 @@ AuraHub:CreateSlider({
     end,
 })
 
--- Anti-AFK Button
-AuraHub:CreateButton({
-    Name = "Ativar Anti-AFK",
-    SectionParent = SectionMain,
-    Callback = function()
-        local vu = game:GetService("VirtualUser")
-        game:GetService("Players").LocalPlayer.Idled:Connect(function()
-            vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-            task.wait(1)
-            vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-        end)
+-- Anti-AFK toggle
+SectionMain:CreateToggle({
+    Name = "Anti-AFK",
+    CurrentValue = false,
+    Callback = function(active)
+        if active then
+            local vu = game:GetService("VirtualUser")
+            game.Players.LocalPlayer.Idled:Connect(function()
+                vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+                task.wait(1)
+                vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+            end)
+        else
+            -- Aqui você poderia desconectar o evento, se quiser (mais avançado)
+        end
     end,
 })
 
--- Reset Button
-AuraHub:CreateButton({
-    Name = "Resetar Personagem",
-    SectionParent = SectionMain,
+-- Reset character button
+SectionMain:CreateButton({
+    Name = "Reset Character",
     Callback = function()
-        local character = game.Players.LocalPlayer.Character
-        local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-        if humanoid then
-            humanoid.Health = 0
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.Health = 0
+            end
         end
     end,
 })
