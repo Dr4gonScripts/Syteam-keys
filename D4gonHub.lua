@@ -1,5 +1,8 @@
--- Carrega a biblioteca Rayfield usando o URL oficial e estável
+-- Carrega a biblioteca Rayfield usando o URL oficial
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+-- NOVO: Adiciona um pequeno atraso para garantir que a biblioteca inicialize
+task.wait(1)
 
 -- Define a chave correta e o link do Discord e Linktree
 local CORRETA_CHAVE = "Dr4gonX"
