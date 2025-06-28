@@ -62,3 +62,17 @@ UtilitySection:AddToggle({
 		end
 	end
 })
+
+-- ==================================================================================================
+-- Iniciar
+-- ==================================================================================================
+
+
+OrionLib:MakeNotification({
+	Name = "D4gon Hub",
+	Content = "carregando...",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+OrionLib:Init()
