@@ -23,7 +23,7 @@ local AuraHub = Window:CreateTab("XD4X Hub", 4483362458)
 local SectionMain = AuraHub:CreateSection("Funções Principais")
 
 -- God Speed (Toggle)
-SectionMain:CreateToggle({
+AuraHub:CreateToggle({
     Name = "God Speed (16 ↔ 100)",
     CurrentValue = false,
     Callback = function(Value)
@@ -34,11 +34,12 @@ SectionMain:CreateToggle({
                 humanoid.WalkSpeed = Value and 100 or 16
             end
         end
-    end
+    end,
+    SectionParent = SectionMain
 })
 
 -- Super Pulo (Toggle)
-SectionMain:CreateToggle({
+AuraHub:CreateToggle({
     Name = "Super Pulo (50 ↔ 120)",
     CurrentValue = false,
     Callback = function(Value)
@@ -49,11 +50,12 @@ SectionMain:CreateToggle({
                 humanoid.JumpPower = Value and 120 or 50
             end
         end
-    end
+    end,
+    SectionParent = SectionMain
 })
 
 -- Anti-AFK (Botão)
-SectionMain:CreateButton({
+AuraHub:CreateButton({
     Name = "Ativar Anti-AFK",
     Callback = function()
         local vu = game:GetService("VirtualUser")
@@ -62,11 +64,12 @@ SectionMain:CreateButton({
             task.wait(1)
             vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
         end)
-    end
+    end,
+    SectionParent = SectionMain
 })
 
 -- Fly simples (Botão)
-SectionMain:CreateButton({
+AuraHub:CreateButton({
     Name = "Ativar Fly",
     Callback = function()
         local player = game.Players.LocalPlayer
@@ -96,11 +99,12 @@ SectionMain:CreateButton({
                 bv.velocity = Vector3.new(0, speed, 0)
             end
         end)
-    end
+    end,
+    SectionParent = SectionMain
 })
 
 -- Resetar Personagem (Botão)
-SectionMain:CreateButton({
+AuraHub:CreateButton({
     Name = "Resetar Personagem",
     Callback = function()
         local character = game.Players.LocalPlayer.Character
@@ -108,39 +112,44 @@ SectionMain:CreateButton({
         if humanoid then
             humanoid.Health = 0
         end
-    end
+    end,
+    SectionParent = SectionMain
 })
 
 -- Aba Muscles Legends
 local MC = Window:CreateTab("Muscles Legends", 4483362458)
 local SectionMCS = MC:CreateSection("🦾 Auto farms")
 
-SectionMCS:CreateButton({
+MC:CreateButton({
     Name = "Speed Hub X",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-    end
+    end,
+    SectionParent = SectionMCS
 })
 
-SectionMCS:CreateButton({
+MC:CreateButton({
     Name = "KTM (key: KTMx2025)",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/zapstreams123/KTMHUB/refs/heads/main/PublicVersion", true))()
-    end
+    end,
+    SectionParent = SectionMCS
 })
 
-SectionMCS:CreateButton({
+MC:CreateButton({
     Name = "Beamed V2 (key: Benishot)",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ben1x1x1x1x/V2/refs/heads/main/BeamedV2FreeLoader", true))()
-    end
+    end,
+    SectionParent = SectionMCS
 })
 
-SectionMCS:CreateButton({
+MC:CreateButton({
     Name = "Ml V1 Hub",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/2581235867/21/refs/heads/main/By%20Tokattk", true))()
-    end
+    end,
+    SectionParent = SectionMCS
 })
 
 Rayfield:LoadConfiguration()
