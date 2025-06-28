@@ -1,5 +1,5 @@
--- Carrega a biblioteca Rayfield do link raw
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/Source.lua"))()
+-- Carrega a biblioteca Rayfield do link raw com o nome do arquivo atualizado
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/Rayfield.lua"))()
 
 -- Define a chave correta e o link do Discord
 local CORRETA_CHAVE = "Dr4gonX"
