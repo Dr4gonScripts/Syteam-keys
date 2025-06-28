@@ -178,7 +178,7 @@ BloxFruitsTab:CreateButton({
     SectionParent = BloxFruitsSection
 })
 
--- ==================================================================
+-- =================================================================
 -- ABA ROUBE UM BRAINROT
 -- ==================================================================
 local BrainrotTab = Window:CreateTab("Roube um Brainrot", 4483345998)
