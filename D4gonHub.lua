@@ -332,6 +332,14 @@ UtilitySection:AddButton({
 })
 
 
+UtilitySection:AddButton({
+	Name = "Rejoin",
+	Callback = function()
+		print("Reiniciando o jogador para tentar um rejoin...")
+		-- Reinicia o jogador, o que geralmente força um rejoin no mesmo servidor
+		game:GetService("Players").LocalPlayer:LoadCharacter()
+	end
+})
 
 -- ==================================================================================================
 -- ABA MUSCLES LEGENDS
@@ -464,6 +472,51 @@ BrainrotSection:AddButton({
 })
 
 
+-- ==================================================================================================
+-- ABA GROW A GARDEN
+-- ==================================================================================================
+
+local GrowGardenTab = Window:MakeTab({
+	Name = "Grow a Garden",
+	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	PremiumOnly = false
+})
+
+local GGSection = GrowGardenTab:AddSection({
+	Name = "🌱 Garden Farm"
+})
+
+GGSection:AddButton({
+	Name = "Speed Hub X",
+	Callback = function()
+		print("Executando script...")
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+	end
+})
+
+GGSection:AddButton({
+	Name = "No-Lag Hub",
+	Callback = function()
+		print("Executando script...")
+		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV2.lua"))()
+	end
+})
+
+GGSection:AddButton({
+	Name = "ThunderZ Hub",
+	Callback = function()
+		print("Executando script...")
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/ThundarZ/Welcome/refs/heads/main/Main/GaG/Main.lua'))()
+	end
+})
+
+GGSection:AddButton({
+	Name = "Dupe GAG",
+	Callback = function()
+		print("Executando script...")
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/SPIDROSH/Grow-a-Garden/refs/heads/main/DGAG'))()
+	end
+})
 
 
 -- ==================================================================================================
