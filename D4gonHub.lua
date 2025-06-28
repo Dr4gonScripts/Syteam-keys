@@ -12,12 +12,6 @@ local Section = Tab:AddSection({
 	Name = "Auto Farm"
 })
 
-local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
-
-local Window = OrionLib:MakeWindow({Name = "My Custom Hub"})
-local Tab = Window:MakeTab({Name = "Main"})
-local Section = Tab:AddSection({Name = "Player Customization"})
-
 -- Insira o código do slider aqui:
 Section:AddSlider({
     Name = "Speed Customs",
