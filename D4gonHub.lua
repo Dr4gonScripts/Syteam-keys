@@ -23,13 +23,14 @@ local AuraHub = Window:CreateTab("XD4X Hub", 4483362458)
 local SectionMain = AuraHub:CreateSection("Funções Principais")
 
 -- WalkSpeed Slider
-SectionMain:CreateSlider({
+AuraHub:CreateSlider({
     Name = "Walk Speed",
     Min = 16,
     Max = 200,
     Default = 16,
     Increment = 1,
     Suffix = " WalkSpeed",
+    SectionParent = SectionMain,
     Callback = function(value)
         local character = game.Players.LocalPlayer.Character
         if character then
@@ -42,13 +43,14 @@ SectionMain:CreateSlider({
 })
 
 -- JumpPower Slider
-SectionMain:CreateSlider({
+AuraHub:CreateSlider({
     Name = "Jump Power",
     Min = 50,
     Max = 250,
     Default = 50,
     Increment = 1,
     Suffix = " JumpPower",
+    SectionParent = SectionMain,
     Callback = function(value)
         local character = game.Players.LocalPlayer.Character
         if character then
@@ -61,8 +63,9 @@ SectionMain:CreateSlider({
 })
 
 -- Anti-AFK Button
-SectionMain:CreateButton({
+AuraHub:CreateButton({
     Name = "Ativar Anti-AFK",
+    SectionParent = SectionMain,
     Callback = function()
         local vu = game:GetService("VirtualUser")
         game:GetService("Players").LocalPlayer.Idled:Connect(function()
@@ -74,8 +77,9 @@ SectionMain:CreateButton({
 })
 
 -- Reset Button
-SectionMain:CreateButton({
+AuraHub:CreateButton({
     Name = "Resetar Personagem",
+    SectionParent = SectionMain,
     Callback = function()
         local character = game.Players.LocalPlayer.Character
         local humanoid = character and character:FindFirstChildOfClass("Humanoid")
