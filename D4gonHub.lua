@@ -1,29 +1,24 @@
 -- ==================================================================================================
--- INICIALIZAÇÃO DA BIBLIOTECA ORION
+-- INICIALIZAÇÃO DA BIBLIOTECA VAPE V4
 -- ==================================================================================================
-local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/whtsky/OrionLib-v2-re/main/Orion.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/79493649/vape/main/source.lua"))()
 
-local Window = OrionLib:MakeWindow({Name = "D4gon Hub - @draknessxz - discord", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local window = library:create_window("D4gon Hub - @draknessxz - discord")
 
-local Tab = Window:MakeTab({
-    Name = "Main",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
+local main_tab = window:create_tab("Main")
 
-local Section = Tab:AddSection({
-    Name = "🔒 Main Hub"
-})
+local main_section = main_tab:create_section("🔒 Main Hub")
 
 -- ==================================================================================================
 -- FUNÇÕES NA SEÇÃO MAIN HUB
 -- ==================================================================================================
 
 -- Botão para Walk Speed (16 -> 100)
-Section:AddToggle({
-    Name = "God Speed (On/Off)",
-    Default = false, -- Começa desligado
-    Callback = function(Value)
+main_section:create_toggle({
+    name = "God Speed (On/Off)",
+    flag = "god_speed",
+    value = false,
+    callback = function(Value)
         local character = game:GetService("Players").LocalPlayer.Character
         if character then
             local humanoid = character:FindFirstChildOfClass("Humanoid")
@@ -107,9 +102,7 @@ end
 
 
 -- Cria uma nova seção para organizar os botões de utilidade
-local UtilitySection = Tab:AddSection({
-    Name = "⚙️ Combat & Utility"
-})
+local utility_section = main_tab:create_section("⚙️ Combat & Utility")
 
 -- Variável para manter o estado do Noclip, mesmo ao morrer
 local isNoclipEnabled = false
@@ -133,10 +126,11 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
 end)
 
 -- Botão para Noclip (Atravessar paredes)
-UtilitySection:AddToggle({
-    Name = "Noclip",
-    Default = false, -- Começa desligado
-    Callback = function(Value)
+utility_section:create_toggle({
+    name = "Noclip",
+    flag = "noclip_toggle",
+    value = false,
+    callback = function(Value)
         local character = game:GetService("Players").LocalPlayer.Character
         isNoclipEnabled = Value -- Atualiza o estado global
         if character then
@@ -157,10 +151,11 @@ UtilitySection:AddToggle({
 
 -- Botão para Aimbot
 local aimbotLoopConnection = nil
-UtilitySection:AddToggle({
-    Name = "Aimbot",
-    Default = false, -- Começa desligado
-    Callback = function(Value)
+utility_section:create_toggle({
+    name = "Aimbot",
+    flag = "aimbot_toggle",
+    value = false,
+    callback = function(Value)
         if Value then
             -- Se o botão estiver LIGADO, inicia o loop de mira
             print("Aimbot: ON")
@@ -196,9 +191,9 @@ UtilitySection:AddToggle({
 
 -- Botão para ESP (Executa um script externo)
 -- *** ESTE BOTÃO SUBSTITUIU O BOTÃO DE ESP ANTERIOR ***
-UtilitySection:AddButton({
-    Name = "Execute ESP (Link Externo)",
-    Callback = function()
+utility_section:create_button({
+    name = "Execute ESP (Link Externo)",
+    callback = function()
         -- AVISO: Execute scripts de fontes desconhecidas por sua conta e risco.
         print("Executando script de ESP do GitHub...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/wa0101/Roblox-ESP/refs/heads/main/esp.lua",true))()
@@ -207,10 +202,11 @@ UtilitySection:AddButton({
 
 
 -- Botão para mudar o FOV (Campo de Visão)
-UtilitySection:AddToggle({
-    Name = "FOV Changer",
-    Default = false, -- Começa desligado
-    Callback = function(Value)
+utility_section:create_toggle({
+    name = "FOV Changer",
+    flag = "fov_changer",
+    value = false,
+    callback = function(Value)
         local camera = game:GetService("Workspace").CurrentCamera
         if camera then
             if Value then
@@ -231,36 +227,36 @@ UtilitySection:AddToggle({
 -- ==================================================================================================
 
 -- Botão para Fly Universal
-UtilitySection:AddButton({
-    Name = "Fly Universal",
-    Callback = function()
+utility_section:create_button({
+    name = "Fly Universal",
+    callback = function()
         print("Executando script de Fly Universal...")
         loadstring(game:HttpGet("https://pastebin.com/raw/xuSMWfDu"))()
     end
 })
 
 -- Botão para TP Universal
-UtilitySection:AddButton({
-    Name = "TP Universal",
-    Callback = function()
+utility_section:create_button({
+    name = "TP Universal",
+    callback = function()
         print("Executando script de TP Universal...")
         loadstring(game:HttpGet("https://pastebin.com/raw/AbDM2er1"))()
     end
 })
 
 -- Botão para Anti Afk
-UtilitySection:AddButton({
-    Name = "Anti Afk",
-    Callback = function()
+utility_section:create_button({
+    name = "Anti Afk",
+    callback = function()
         print("Executando script de Anti Afk...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/KazeOnTop/Rice-Anti-Afk/main/Wind", true))()
     end
 })
 
 
-UtilitySection:AddButton({
-    Name = "Rejoin",
-    Callback = function()
+utility_section:create_button({
+    name = "Rejoin",
+    callback = function()
         print("Reiniciando o jogador para tentar um rejoin...")
         -- Reinicia o jogador, o que geralmente força um rejoin no mesmo servidor
         game:GetService("Players").LocalPlayer:LoadCharacter()
@@ -271,43 +267,37 @@ UtilitySection:AddButton({
 -- ABA MUSCLES LEGENDS
 -- ==================================================================================================
 
-local MusclesLegendsTab = Window:MakeTab({
-    Name = "Muscles Legends",
-    Icon = "rbxassetid://4483345998", -- Ícone de bíceps
-    PremiumOnly = false
-})
+local MusclesLegendsTab = window:create_tab("Muscles Legends")
 
-local AutoFarmSection = MusclesLegendsTab:AddSection({
-    Name = "🦾 Auto Farm"
-})
+local AutoFarmSection = MusclesLegendsTab:create_section("🦾 Auto Farm")
 
-AutoFarmSection:AddButton({
-    Name = "Speed Hub X",
-    Callback = function()
+AutoFarmSection:create_button({
+    name = "Speed Hub X",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
     end
 })
 
-AutoFarmSection:AddButton({
-    Name = "Beamed V2 (key: Benishot )",
-    Callback = function()
+AutoFarmSection:create_button({
+    name = "Beamed V2 (key: Benishot )",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ben1x1x1x1x/V2/refs/heads/main/BeamedV2FreeLoader"))()
     end
 })
 
-AutoFarmSection:AddButton({
-    Name = "ML V1",
-    Callback = function()
+AutoFarmSection:create_button({
+    name = "ML V1",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/2581235867/21/refs/heads/main/By%20Tokattk"))()
     end
 })
 
-AutoFarmSection:AddButton({
-    Name = "KTM (key: KTMx2025 )",
-    Callback = function()
+AutoFarmSection:create_button({
+    name = "KTM (key: KTMx2025 )",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/zapstreams123/KTMHUB/refs/heads/main/PublicVersion"))()
     end
@@ -317,43 +307,37 @@ AutoFarmSection:AddButton({
 -- BLOX FRUITS ABA
 -- ==================================================================================================
 
-local BloxFruitsTab = Window:MakeTab({
-    Name = "Blox Fruits",
-    Icon = "rbxassetid://4483345998", -- Ícone de uma fruta
-    PremiumOnly = false
-})
+local BloxFruitsTab = window:create_tab("Blox Fruits")
 
-local BFSection = BloxFruitsTab:AddSection({
-    Name = "⚔️ Combat & Farm"
-})
+local BFSection = BloxFruitsTab:create_section("⚔️ Combat & Farm")
 
-BFSection:AddButton({
-    Name = "Speed Hub X",
-    Callback = function()
+BFSection:create_button({
+    name = "Speed Hub X",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
     end
 })
 
-BFSection:AddButton({
-    Name = "Redz Hub",
-    Callback = function()
+BFSection:create_button({
+    name = "Redz Hub",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()
     end
 })
 
-BFSection:AddButton({
-    Name = "Alchemy Hub Beta Edition",
-    Callback = function()
+BFSection:create_button({
+    name = "Alchemy Hub Beta Edition",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/DENGHUB2025/HUGHUB/main/WL", true))()
     end
 })
 
-BFSection:AddButton({
-    Name = "Cokka Hub",
-    Callback = function()
+BFSection:create_button({
+    name = "Cokka Hub",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/CokkaHub.lua")()
     end
@@ -363,35 +347,29 @@ BFSection:AddButton({
 -- ABA ROUBE UM BRAINROT
 -- ==================================================================================================
 
-local StealABrainrotTab = Window:MakeTab({
-    Name = "Roube um Brainrot",
-    Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
-    PremiumOnly = false
-})
+local StealABrainrotTab = window:create_tab("Roube um Brainrot")
 
-local BrainrotSection = StealABrainrotTab:AddSection({
-    Name = "🧠 Brainrot Farm"
-})
+local BrainrotSection = StealABrainrotTab:create_section("🧠 Brainrot Farm")
 
-BrainrotSection:AddButton({
-    Name = "Moskvv Hub",
-    Callback = function()
+BrainrotSection:create_button({
+    name = "Moskvv Hub",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/forkT3/Steal-a-Brianrot/main/Steal-A-Brianrot.lua"))()
     end
 })
 
-BrainrotSection:AddButton({
-    Name = "Fenorik HUb",
-    Callback = function()
+BrainrotSection:create_button({
+    name = "Fenorik HUb",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Fenorik/FenorikHub/refs/heads/main/FenorikHubINIT.lua"))()
     end
 })
 
-BrainrotSection:AddButton({
-    Name = "Nabaru Hub",
-    Callback = function()
+BrainrotSection:create_button({
+    name = "Nabaru Hub",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Akbar123s/Script-Roblox-/refs/heads/main/nabaruBrainrot"))()
     end
@@ -402,58 +380,44 @@ BrainrotSection:AddButton({
 -- ABA GROW A GARDEN
 -- ==================================================================================================
 
-local GrowGardenTab = Window:MakeTab({
-    Name = "Grow a Garden",
-    Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
-    PremiumOnly = false
-})
+local GrowGardenTab = window:create_tab("Grow a Garden")
 
-local GGSection = GrowGardenTab:AddSection({
-    Name = "🌱 Garden Farm"
-})
+local GGSection = GrowGardenTab:create_section("🌱 Garden Farm")
 
-GGSection:AddButton({
-    Name = "Speed Hub X",
-    Callback = function()
+GGSection:create_button({
+    name = "Speed Hub X",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
     end
 })
 
-GGSection:AddButton({
-    Name = "No-Lag Hub",
-    Callback = function()
+GGSection:create_button({
+    name = "No-Lag Hub",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV2.lua"))()
     end
 })
 
-GGSection:AddButton({
-    Name = "ThunderZ Hub",
-    Callback = function()
+GGSection:create_button({
+    name = "ThunderZ Hub",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet('https://raw.githubusercontent.com/ThundarZ/Welcome/refs/heads/main/Main/GaG/Main.lua'))()
     end
 })
 
-GGSection:AddButton({
-    Name = "Dupe GAG",
-    Callback = function()
+GGSection:create_button({
+    name = "Dupe GAG",
+    callback = function()
         print("Executando script...")
         loadstring(game:HttpGet('https://raw.githubusercontent.com/SPIDROSH/Grow-a-Garden/refs/heads/main/DGAG'))()
     end
 })
 
-
 -- ==================================================================================================
--- PARTE DE INICIAR
+-- PARTE DE FINALIZAR
 -- ==================================================================================================
 
-OrionLib:MakeNotification({
-    Name = "D4gon Hub",
-    Content = "carregando...",
-    Image = "rbxassetid://4483345998",
-    Time = 5
-})
-
-OrionLib:Init()
+library:init()
