@@ -22,41 +22,33 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab("XD4X Hub", 4483362458)
 local SectionMain = Tab:CreateSection("Main Features")
 
--- WalkSpeed slider
-SectionMain:CreateSlider({
-    Name = "WalkSpeed",
-    Min = 16,
-    Max = 200,
-    Default = 16,
-    Increment = 1,
-    Suffix = "Speed",
-    Callback = function(value)
+-- Toggle WalkSpeed
+SectionMain:CreateToggle({
+    Name = "God Speed (16 ↔ 100)",
+    CurrentValue = false,
+    Callback = function(active)
         local player = game.Players.LocalPlayer
         local character = player.Character
         if character then
             local humanoid = character:FindFirstChildOfClass("Humanoid")
             if humanoid then
-                humanoid.WalkSpeed = value
+                humanoid.WalkSpeed = active and 100 or 16
             end
         end
     end,
 })
 
--- JumpPower slider
-SectionMain:CreateSlider({
-    Name = "JumpPower",
-    Min = 50,
-    Max = 300,
-    Default = 50,
-    Increment = 1,
-    Suffix = "Power",
-    Callback = function(value)
+-- Toggle JumpPower
+SectionMain:CreateToggle({
+    Name = "Super Jump (50 ↔ 120)",
+    CurrentValue = false,
+    Callback = function(active)
         local player = game.Players.LocalPlayer
         local character = player.Character
         if character then
             local humanoid = character:FindFirstChildOfClass("Humanoid")
             if humanoid then
-                humanoid.JumpPower = value
+                humanoid.JumpPower = active and 120 or 50
             end
         end
     end,
@@ -74,8 +66,6 @@ SectionMain:CreateToggle({
                 task.wait(1)
                 vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
             end)
-        else
-            -- Aqui você poderia desconectar o evento, se quiser (mais avançado)
         end
     end,
 })
