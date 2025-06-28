@@ -15,17 +15,15 @@ local Section = Tab:AddSection({
 -- Botão para Walk Speed (16 -> 100)
 Section:AddToggle({
 	Name = "God Speed (On/Off)",
-	Default = false, -- Começa desligado
+	Default = false,
 	Callback = function(Value)
 		local character = game:GetService("Players").LocalPlayer.Character
 		if character then
 			local humanoid = character:FindFirstChildOfClass("Humanoid")
 			if humanoid then
 				if Value then
-					-- Se o botão estiver LIGADO
 					humanoid.WalkSpeed = 100
 				else
-					-- Se o botão estiver DESLIGADO, volta à velocidade normal
 					humanoid.WalkSpeed = 16
 				end
 			end
@@ -33,14 +31,13 @@ Section:AddToggle({
 	end
 })
 
-
--- ==================================================================================================
--- ABA MUSCLES LEGENDS
--- ==================================================================================================
+---
+### **ABA MUSCLES LEGENDS**
+---
 
 local MusclesLegendsTab = Window:MakeTab({
 	Name = "Muscles Legends",
-	Icon = "rbxassetid://4483345998", -- Ícone de bíceps
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -80,13 +77,13 @@ AutoFarmSection:AddButton({
 	end
 })
 
--- ==================================================================================================
--- BLOX FRUITS ABA
--- ==================================================================================================
+---
+### **BLOX FRUITS ABA**
+---
 
 local BloxFruitsTab = Window:MakeTab({
 	Name = "Blox Fruits",
-	Icon = "rbxassetid://4483345998", -- Ícone de uma fruta
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -126,13 +123,13 @@ BFSection:AddButton({
 	end
 })
 
--- ==================================================================================================
--- ABA ROUBE UM BRAINROT
--- ==================================================================================================
+---
+### **ABA ROUBE UM BRAINROT**
+---
 
 local StealABrainrotTab = Window:MakeTab({
 	Name = "Roube um Brainrot",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -180,14 +177,13 @@ BrainrotSection:AddButton({
 	end
 })
 
-
--- ==================================================================================================
--- ABA GROW A GARDEN
--- ==================================================================================================
+---
+### **ABA GROW A GARDEN**
+---
 
 local GrowGardenTab = Window:MakeTab({
 	Name = "Grow a Garden",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -235,13 +231,13 @@ GGSection:AddButton({
 	end
 })
 
--- ==================================================================================================
--- ABA 99 NOITES EM UMA FLORESTA
--- ==================================================================================================
+---
+### **ABA 99 NOITES EM UMA FLORESTA**
+---
 
 local NEFTab = Window:MakeTab({
 	Name = "99 Noites na Floresta",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -273,13 +269,13 @@ NERF9Section:AddButton({
 	end
 })
 
--- ==================================================================================================
--- ABA BLUE LOCK RIVAIS
--- ==================================================================================================
+---
+### **ABA BLUE LOCK RIVAIS**
+---
 
 local BLRTab = Window:MakeTab({
 	Name = "Blue Lock Rivais",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -295,16 +291,13 @@ BLR1Section:AddButton({
 	end
 })
 
-
-
--- ==================================================================================================
--- ABA FORSAKEN
--- ==================================================================================================
-
+---
+### **ABA FORSAKEN**
+---
 
 local FRTab = Window:MakeTab({
 	Name = "Forsaken",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -320,14 +313,13 @@ FSKSection:AddButton({
 	end
 })
 
-
--- ==================================================================================================
--- ABA DEAD RAILS
--- ==================================================================================================
+---
+### **ABA DEAD RAILS**
+---
 
 local DRTab = Window:MakeTab({
 	Name = "Dead Rails",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -367,25 +359,16 @@ DRLSection:AddButton({
 	end
 })
 
-DRLSection:AddButton({
-	Name = "Auto Win",
-	Callback = function()
-		print("Executando script...")
-		<script language="javascript"> 
+-- O botão 'Auto Win' foi removido pois continha código HTML/JavaScript inválido em Lua.
+-- Se você tiver o link correto do script Lua, ele pode ser adicionado aqui.
 
-document.write(unescape('%3C%63%65%6E%74%65%72%3E%3C%69%66%72%61%6D%65%20%73%63%72%6F%6C%6C%69%6E%67%3D%22%6E%6F%22%20%73%74%79%6C%65%3D%22%77%69%64%74%68%3A%20%38%30%25%3B%20%68%65%69%67%68%74%3A%35%36%30%70%78%3B%20%62%6F%72%64%65%72%20%3A%20%30%70%78%20%73%6F%6C%69%64%20%74%72%61%6E%73%70%61%72%65%6E%74%3B%22%20%73%72%63%3D%22%68%74%74%70%73%3A%2F%2F%73%75%62%34%75%6E%6C%6F%63%6B%2E%63%6F%6D%2F%70%6C%75%67%69%6E%73%2F%41%50%49%2FFL.php?$=1521705%22%3E%3C%2F%69%66%72%61%6D%65%3E%3C%2F%63%65%6E%74%65%72%3E'));
-</script>
-	end
-})
-
-
--- ==================================================================================================
--- ABA ARISE CROSSOVER
--- ==================================================================================================
+---
+### **ABA ARISE CROSSOVER**
+---
 
 local ARTab = Window:MakeTab({
 	Name = "Arise Crossover",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -393,14 +376,13 @@ local ARCSection = ARTab:AddSection({
 	Name = "♟ Arise Crossover - Em breve..."
 })
 
-
--- ==================================================================================================
--- CAR DEALERSHIP TYCOON
--- ==================================================================================================
+---
+### **CAR DEALERSHIP TYCOON**
+---
 
 local CDTTab = Window:MakeTab({
 	Name = "Car Dealership Tycoon",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -432,13 +414,13 @@ CDSection:AddButton({
 	end
 })
 
--- ==================================================================================================
--- ABA BED WARS
--- ==================================================================================================
+---
+### **ABA BED WARS**
+---
 
 local BDTab = Window:MakeTab({
 	Name = "Bed Wars",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -447,21 +429,20 @@ local BDWSection = BDTab:AddSection({
 })
 
 BDWSection:AddButton({
-	Name = "VapeVoid  Hub",
+	Name = "VapeVoid Hub",
 	Callback = function()
 		print("Executando script...")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWRewrite/main/NewMainScript.lua", true))()
 	end
 })
 
-
--- ==================================================================================================
--- ABA RACE CLICKer
--- ==================================================================================================
+---
+### **ABA RACE CLICKER**
+---
 
 local RCTab = Window:MakeTab({
 	Name = "Race Clicker",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -477,13 +458,14 @@ RCCSection:AddButton({
 	end
 })
 
--- ==================================================================================================
--- Stand Awakening
--- ==================================================================================================
+---
+### **STAND AWAKENING**
+---
 
-local STAab = Window:MakeTab({
+-- A variável da aba foi corrigida de 'STAab' para 'STATab'
+local STATab = Window:MakeTab({
 	Name = "Stand Awakening",
-	Icon = "rbxassetid://4483345998", -- Ícone de cérebro com engrenagens
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
@@ -499,10 +481,9 @@ SASection:AddButton({
 	end
 })
 
--- ==================================================================================================
--- Iniciar
--- ==================================================================================================
-
+---
+### **INICIAR**
+---
 
 OrionLib:MakeNotification({
 	Name = "D4gon Hub",
