@@ -40,7 +40,7 @@ local Window = OrionLib:MakeWindow({
     IntroText = "D4gon Hub."
 })
 
--- Cria a aba "Main"
+-- Adicionando a linha que faltava para criar a aba 'Main'
 local Tab = Window:MakeTab({
 	Name = "Main",
 	Icon = "rbxassetid://2549575201",
@@ -63,7 +63,7 @@ MovementSection:AddSlider({
     Min = 0,
     Max = 500,
     Default = 16,
-    Increment = 1, -- Usando 'Increment' conforme a documentação
+    Increment = 1,
     Callback = function(value)
         if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
             LocalPlayer.Character.Humanoid.WalkSpeed = value
@@ -76,7 +76,7 @@ MovementSection:AddSlider({
     Min = 0,
     Max = 500,
     Default = 50,
-    Increment = 1, -- Usando 'Increment' conforme a documentação
+    Increment = 1,
     Callback = function(value)
         if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
             LocalPlayer.Character.Humanoid.JumpPower = value
