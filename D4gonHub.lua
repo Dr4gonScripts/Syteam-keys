@@ -34,7 +34,7 @@ SectionMain:CreateToggle({
                 humanoid.WalkSpeed = Value and 100 or 16
             end
         end
-    end,
+    end
 })
 
 -- Super Pulo (Toggle)
@@ -49,7 +49,7 @@ SectionMain:CreateToggle({
                 humanoid.JumpPower = Value and 120 or 50
             end
         end
-    end,
+    end
 })
 
 -- Anti-AFK (Botão)
@@ -62,7 +62,7 @@ SectionMain:CreateButton({
             task.wait(1)
             vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
         end)
-    end,
+    end
 })
 
 -- Fly simples (Botão)
@@ -96,7 +96,7 @@ SectionMain:CreateButton({
                 bv.velocity = Vector3.new(0, speed, 0)
             end
         end)
-    end,
+    end
 })
 
 -- Resetar Personagem (Botão)
@@ -108,7 +108,7 @@ SectionMain:CreateButton({
         if humanoid then
             humanoid.Health = 0
         end
-    end,
+    end
 })
 
 -- Aba Muscles Legends
@@ -119,28 +119,28 @@ SectionMCS:CreateButton({
     Name = "Speed Hub X",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-    end,
+    end
 })
 
 SectionMCS:CreateButton({
     Name = "KTM (key: KTMx2025)",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/zapstreams123/KTMHUB/refs/heads/main/PublicVersion", true))()
-    end,
+    end
 })
 
 SectionMCS:CreateButton({
     Name = "Beamed V2 (key: Benishot)",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ben1x1x1x1x/V2/refs/heads/main/BeamedV2FreeLoader", true))()
-    end,
+    end
 })
 
 SectionMCS:CreateButton({
     Name = "Ml V1 Hub",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/2581235867/21/refs/heads/main/By%20Tokattk", true))()
-    end,
+    end
 })
 
 Rayfield:LoadConfiguration()
