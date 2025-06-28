@@ -1,3 +1,6 @@
+-- ==================================================================================================
+-- INICIALIZAÇÃO DA BIBLIOTECA ORION
+-- ==================================================================================================
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({Name = "D4gon Hub - @draknessxz - discord", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
@@ -13,43 +16,43 @@ local Section = Tab:AddSection({
 })
 
 -- ==================================================================================================
--- BARRA DE PESQUISA COM LÓGICA DE FILTRAGEM (NOVO CÓDIGO AQUI)
+-- BARRA DE PESQUISA COM LÓGICA DE FILTRAGEM (CÓDIGO EXISTENTE)
 -- ==================================================================================================
 
 -- Esta função percorre todas as seções de uma aba e filtra seus elementos
 local function filterAllSections(tab, searchText)
-    local hasSearchText = #searchText > 0
-    local lowerSearchText = string.lower(searchText)
-    
-    -- task.spawn é usado para evitar travar a UI durante a filtragem
-    task.spawn(function()
-        -- Percorre todos os filhos da aba (Tab) para encontrar as seções
-        for _, sectionFrame in ipairs(tab.Frame:GetChildren()) do
-            -- Verifica se o Frame é uma seção de elementos (Section)
-            if sectionFrame:IsA("Frame") and sectionFrame.Name == "Section" and sectionFrame:FindFirstChild("Frame") then
-                -- Percorre os elementos dentro da seção
-                for _, item in ipairs(sectionFrame.Frame:GetChildren()) do
-                    -- Verifica se o elemento tem um rótulo de nome para filtrar
-                    if item:IsA("Frame") and item:FindFirstChild("NameLabel") then
-                        local nameLabel = item.NameLabel
-                        local itemName = string.lower(nameLabel.Text)
-                        
-                        -- Se a caixa de pesquisa estiver vazia, mostre todos os elementos
-                        if not hasSearchText then
-                            item.Visible = true
-                        else
-                            -- Caso contrário, mostre apenas se o nome contiver o texto pesquisado
-                            if string.find(itemName, lowerSearchText, 1, true) then
-                                item.Visible = true
-                            else
-                                item.Visible = false
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end)
+    local hasSearchText = #searchText > 0
+    local lowerSearchText = string.lower(searchText)
+    
+    -- task.spawn é usado para evitar travar a UI durante a filtragem
+    task.spawn(function()
+        -- Percorre todos os filhos da aba (Tab) para encontrar as seções
+        for _, sectionFrame in ipairs(tab.Frame:GetChildren()) do
+            -- Verifica se o Frame é uma seção de elementos (Section)
+            if sectionFrame:IsA("Frame") and sectionFrame.Name == "Section" and sectionFrame:FindFirstChild("Frame") then
+                -- Percorre os elementos dentro da seção
+                for _, item in ipairs(sectionFrame.Frame:GetChildren()) do
+                    -- Verifica se o elemento tem um rótulo de nome para filtrar
+                    if item:IsA("Frame") and item:FindFirstChild("NameLabel") then
+                        local nameLabel = item.NameLabel
+                        local itemName = string.lower(nameLabel.Text)
+                        
+                        -- Se a caixa de pesquisa estiver vazia, mostre todos os elementos
+                        if not hasSearchText then
+                            item.Visible = true
+                        else
+                            -- Caso contrário, mostre apenas se o nome contiver o texto pesquisado
+                            if string.find(itemName, lowerSearchText, 1, true) then
+                                item.Visible = true
+                            else
+                                item.Visible = false
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end)
 end
 
 -- A barra de pesquisa é adicionada como o primeiro elemento da seção Main Hub
@@ -92,20 +95,19 @@ Section:AddToggle({
 	end
 })
 
--- Botão para Jump Power (50 -> 300)
--- Obtém o serviço de jogadores
-local Players = game:GetService("Players")
--- Obtém o jogador local
-local LocalPlayer = Players.LocalPlayer
 
--- Cria o botão de alternância
+-- ==================================================================================================
+-- COLOQUE O CÓDIGO DO SUPER JUMP AQUI, DEPOIS DA SEÇÃO 'Main Hub'
+-- ==================================================================================================
+
+-- Botão para Jump Power (50 -> 300) - Versão simples e direta
 Section:AddToggle({
 	Name = "Super Jump (On/Off)",
 	Default = false, -- Começa desligado
 	Callback = function(Value)
-		-- Conecta a uma função que garante que o personagem está carregado
-		local function onCharacterAdded(character)
-			local humanoid = character:WaitForChild("Humanoid")
+		local character = game:GetService("Players").LocalPlayer.Character
+		if character then
+			local humanoid = character:FindFirstChildOfClass("Humanoid")
 			if humanoid then
 				if Value then
 					-- Se o botão estiver LIGADO
@@ -115,14 +117,6 @@ Section:AddToggle({
 					humanoid.JumpPower = 50
 				end
 			end
-		end
-		
-		-- Conecta a função ao evento CharacterAdded
-		LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
-		
-		-- Se o personagem já existir no momento em que a função é chamada, atualize-o
-		if LocalPlayer.Character then
-			onCharacterAdded(LocalPlayer.Character)
 		end
 	end
 })
@@ -146,47 +140,47 @@ FOVring.Filled = false
 FOVring.Radius = fov
 
 -- Função para atualizar a posição do círculo na tela
-local function updateDrawings()
-    local camViewportSize = Cam.ViewportSize
-    FOVring.Position = camViewportSize / 2
+local function updateDrawsings()
+    local camViewportSize = Cam.ViewportSize
+    FOVring.Position = camViewportSize / 2
 end
 
 -- Função para calcular a transparência do círculo
 local function calculateTransparency(distance)
-    local maxDistance = fov
-    local transparency = (1 - (distance / maxDistance)) * maxTransparency
-    return transparency
+    local maxDistance = fov
+    local transparency = (1 - (distance / maxDistance)) * maxTransparency
+    return transparency
 end
 
 -- Função para mirar na posição do alvo
 local function lookAt(target)
-    local lookVector = (target - Cam.CFrame.Position).unit
-    local newCFrame = CFrame.new(Cam.CFrame.Position, Cam.CFrame.Position + lookVector)
-    Cam.CFrame = newCFrame
+    local lookVector = (target - Cam.CFrame.Position).unit
+    local newCFrame = CFrame.new(Cam.CFrame.Position, Cam.CFrame.Position + lookVector)
+    Cam.CFrame = newCFrame
 end
 
 -- Função para encontrar o jogador mais próximo dentro do FOV
 local function getClosestPlayerInFOV(trg_part)
-    local nearest = nil
-    local last = math.huge
-    local playerMousePos = Cam.ViewportSize / 2
+    local nearest = nil
+    local last = math.huge
+    local playerMousePos = Cam.ViewportSize / 2
 
-    for _, player in ipairs(Players:GetPlayers()) do
-        if player ~= Players.LocalPlayer and player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
-            local part = player.Character and player.Character:FindFirstChild(trg_part)
-            if part then
-                local ePos, isVisible = Cam:WorldToViewportPoint(part.Position)
-                local distance = (Vector2.new(ePos.x, ePos.y) - playerMousePos).Magnitude
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= Players.LocalPlayer and player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
+            local part = player.Character and player.Character:FindFirstChild(trg_part)
+            if part then
+                local ePos, isVisible = Cam:WorldToViewportPoint(part.Position)
+                local distance = (Vector2.new(ePos.x, ePos.y) - playerMousePos).Magnitude
 
-                if distance < last and isVisible and distance < fov then
-                    last = distance
-                    nearest = player
-                end
-            end
-        end
-    end
+                if distance < last and isVisible and distance < fov then
+                    last = distance
+                    nearest = player
+                end
+            end
+        end
+    end
 
-    return nearest
+    return nearest
 end
 -- ==================================================================================================
 -- FIM DO CÓDIGO DO AIMBOT
@@ -251,27 +245,27 @@ UtilitySection:AddToggle({
 		if Value then
 			-- Se o botão estiver LIGADO, inicia o loop de mira
 			print("Aimbot: ON")
-            FOVring.Visible = true -- Torna o círculo FOV visível
-            -- Conecta a função de mira e desenho ao RenderStepped
+            FOVring.Visible = true -- Torna o círculo FOV visível
+            -- Conecta a função de mira e desenho ao RenderStepped
 			aimbotLoopConnection = RunService.RenderStepped:Connect(function()
-                updateDrawings()
-                local closest = getClosestPlayerInFOV("Head")
-                if closest and closest.Character:FindFirstChild("Head") then
-                    lookAt(closest.Character.Head.Position)
-                end
-                
-                if closest then
-                    local ePos, isVisible = Cam:WorldToViewportPoint(closest.Character.Head.Position)
-                    local distance = (Vector2.new(ePos.x, ePos.y) - (Cam.ViewportSize / 2)).Magnitude
-                    FOVring.Transparency = calculateTransparency(distance)
-                else
-                    FOVring.Transparency = maxTransparency -- Mantenha a transparência máxima quando não houver alvo
-                end
-            end)
+                updateDrawings()
+                local closest = getClosestPlayerInFOV("Head")
+                if closest and closest.Character:FindFirstChild("Head") then
+                    lookAt(closest.Character.Head.Position)
+                end
+                
+                if closest then
+                    local ePos, isVisible = Cam:WorldToViewportPoint(closest.Character.Head.Position)
+                    local distance = (Vector2.new(ePos.x, ePos.y) - (Cam.ViewportSize / 2)).Magnitude
+                    FOVring.Transparency = calculateTransparency(distance)
+                else
+                    FOVring.Transparency = maxTransparency -- Mantenha a transparência máxima quando não houver alvo
+                end
+            end)
 		else
 			-- Se o botão estiver DESLIGADO, para o loop de mira
 			print("Aimbot: OFF")
-            FOVring.Visible = false -- Torna o círculo FOV invisível
+            FOVring.Visible = false -- Torna o círculo FOV invisível
 			if aimbotLoopConnection then
 				aimbotLoopConnection:Disconnect()
 				aimbotLoopConnection = nil
@@ -345,12 +339,14 @@ UtilitySection:AddButton({
 })
 
 
+-- Botão de Rejoin (versão otimizada)
 UtilitySection:AddButton({
 	Name = "Rejoin",
 	Callback = function()
-		print("Reiniciando o jogador para tentar um rejoin...")
-		-- Reinicia o jogador, o que geralmente força um rejoin no mesmo servidor
-		game:GetService("Players").LocalPlayer:LoadCharacter()
+		print("Teleportando para rejoin...")
+		local TeleportService = game:GetService("TeleportService")
+		local LocalPlayer = game:GetService("Players").LocalPlayer
+		TeleportService:Teleport(game.PlaceId, LocalPlayer)
 	end
 })
 
