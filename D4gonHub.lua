@@ -1,460 +1,261 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
+-- Carrega a RayField UI Library
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
-local Window = OrionLib:MakeWindow({Name = "D4gon Hub - @draknessxz - discord", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
-
-local Tab = Window:MakeTab({
-    Name = "Main",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
+-- Cria a janela principal
+local Window = Rayfield:CreateWindow({
+   Name = "D4gon Hub",
+   LoadingTitle = "Carregando D4gon Hub...",
+   LoadingSubtitle = "by @draknessxz | discord.gg/seulink",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = "D4gonHubConfig",
+      FileName = "Configuration"
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "discord.gg/seulink", -- Substitua pelo seu convite real
+      RememberJoins = true
+   },
+   KeySystem = false, -- Defina como true para usar sistema de key
 })
 
-local Section = Tab:AddSection({
-    Name = "🔒 Main Hub"
+-- ABA PRINCIPAL
+local MainTab = Window:CreateTab("Principal", 4483345998)
+local MainSection = MainTab:CreateSection("🔒 Main Hub")
+
+-- Toggle de Velocidade
+MainTab:CreateToggle({
+   Name = "God Speed (On/Off)",
+   CurrentValue = false,
+   Flag = "GodSpeedToggle",
+   Callback = function(Value)
+      local humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+      if humanoid then
+         humanoid.WalkSpeed = Value and 100 or 16
+      end
+   end,
 })
 
--- Botão para Walk Speed (16 -> 100)
-Section:AddToggle({
-    Name = "God Speed (On/Off)",
-    Default = false,
-    Callback = function(Value)
-        local character = game:GetService("Players").LocalPlayer.Character
-        if character then
-            local humanoid = character:FindFirstChildOfClass("Humanoid")
-            if humanoid then
-                if Value then
-                    humanoid.WalkSpeed = 100
-                else
-                    humanoid.WalkSpeed = 16
-                end
-            end
-        end
-    end
-})
-
--- ==================================================================================================
 -- ABA MUSCLES LEGENDS
--- ==================================================================================================
+local MLTab = Window:CreateTab("Muscles Legends", 4483345998)
+local MLSection = MLTab:CreateSection("🦾 Auto Farm")
 
-local MusclesLegendsTab = Window:MakeTab({
-    Name = "Muscles Legends",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
+local MLButtons = {
+   {Name = "Speed Hub X", URL = "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"},
+   {Name = "Beamed V2 (key: Benishot)", URL = "https://raw.githubusercontent.com/ben1x1x1x1x/V2/main/BeamedV2FreeLoader"},
+   {Name = "ML V1", URL = "https://raw.githubusercontent.com/2581235867/21/main/By%20Tokattk"},
+   {Name = "KTM (key: KTMx2025)", URL = "https://raw.githubusercontent.com/zapstreams123/KTMHUB/main/PublicVersion"}
+}
 
-local AutoFarmSection = MusclesLegendsTab:AddSection({
-    Name = "🦾 Auto Farm"
-})
+for _, btn in pairs(MLButtons) do
+   MLTab:CreateButton({
+      Name = btn.Name,
+      Callback = function()
+         loadstring(game:HttpGet(btn.URL, true))()
+      end,
+   })
+end
 
-AutoFarmSection:AddButton({
-    Name = "Speed Hub X",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-    end
-})
+-- ABA BLOX FRUITS
+local BFTab = Window:CreateTab("Blox Fruits", 4483345998)
+local BFSection = BFTab:CreateSection("⚔️ Combat & Farm")
 
-AutoFarmSection:AddButton({
-    Name = "Beamed V2 (key: Benishot)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ben1x1x1x1x/V2/refs/heads/main/BeamedV2FreeLoader"))()
-    end
-})
+local BFButtons = {
+   {Name = "Speed Hub X", URL = "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"},
+   {Name = "Redz Hub", URL = "https://raw.githubusercontent.com/realredz/BloxFruits/main/Source.lua"},
+   {Name = "Alchemy Hub Beta", URL = "https://raw.githubusercontent.com/DENGHUB2025/HUGHUB/main/WL"},
+   {Name = "Cokka Hub", URL = "https://raw.githubusercontent.com/UserDevEthical/Loader/main/CokkaHub.lua"}
+}
 
-AutoFarmSection:AddButton({
-    Name = "ML V1",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/2581235867/21/refs/heads/main/By%20Tokattk"))()
-    end
-})
+for _, btn in pairs(BFButtons) do
+   BFTab:CreateButton({
+      Name = btn.Name,
+      Callback = function()
+         loadstring(game:HttpGet(btn.URL, true))()
+      end,
+   })
+end
 
-AutoFarmSection:AddButton({
-    Name = "KTM (key: KTMx2025)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/zapstreams123/KTMHUB/refs/heads/main/PublicVersion"))()
-    end
-})
-
--- ==================================================================================================
--- BLOX FRUITS ABA
--- ==================================================================================================
-
-local BloxFruitsTab = Window:MakeTab({
-    Name = "Blox Fruits",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local BFSection = BloxFruitsTab:AddSection({
-    Name = "⚔️ Combat & Farm"
-})
-
-BFSection:AddButton({
-    Name = "Speed Hub X",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-    end
-})
-
-BFSection:AddButton({
-    Name = "Redz Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()
-    end
-})
-
-BFSection:AddButton({
-    Name = "Alchemy Hub Beta Edition",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/DENGHUB2025/HUGHUB/main/WL", true))()
-    end
-})
-
-BFSection:AddButton({
-    Name = "Cokka Hub",
-    Callback = function()
-        loadstring(game:HttpGet"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/CokkaHub.lua")()
-    end
-})
-
--- ==================================================================================================
 -- ABA ROUBE UM BRAINROT
--- ==================================================================================================
+local BrainrotTab = Window:CreateTab("Roube um Brainrot", 4483345998)
+local BrainrotSection = BrainrotTab:CreateSection("🧠 Brainrot Farm")
 
-local StealABrainrotTab = Window:MakeTab({
-    Name = "Roube um Brainrot",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
+local BrainrotButtons = {
+   {Name = "Moskvv Hub", URL = "https://raw.githubusercontent.com/forkT3/Steal-a-Brianrot/main/Steal-A-Brianrot.lua"},
+   {Name = "Fenorik Hub", URL = "https://raw.githubusercontent.com/Fenorik/FenorikHub/main/FenorikHubINIT.lua"},
+   {Name = "Nabaru Hub", URL = "https://raw.githubusercontent.com/Akbar123s/Script-Roblox-/main/nabaruBrainrot"},
+   {Name = "oRee Hub", URL = "https://oreofdev.github.io/Sw1ftSync/Raw/SSXBr/"},
+   {Name = "Makal Hub", URL = "https://makalhub.vercel.app/api/script/loader"}
+}
 
-local BrainrotSection = StealABrainrotTab:AddSection({
-    Name = "🧠 Brainrot Farm"
-})
+for _, btn in pairs(BrainrotButtons) do
+   BrainrotTab:CreateButton({
+      Name = btn.Name,
+      Callback = function()
+         if btn.Name == "Makal Hub" then
+            local a,b,c=loadstring,(syn and syn.request)or(http and http.request)or(request)or(http_request),assert
+            c(a and b,"Executor not Supported")
+            a(b({Url=btn.URL,Method="GET"}).Body)()
+         else
+            loadstring(game:HttpGet(btn.URL, true))()
+         end
+      end,
+   })
+end
 
-BrainrotSection:AddButton({
-    Name = "Moskvv Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/forkT3/Steal-a-Brianrot/main/Steal-A-Brianrot.lua"))()
-    end
-})
-
-BrainrotSection:AddButton({
-    Name = "Fenorik HUb",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Fenorik/FenorikHub/refs/heads/main/FenorikHubINIT.lua"))()
-    end
-})
-
-BrainrotSection:AddButton({
-    Name = "Nabaru Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Akbar123s/Script-Roblox-/refs/heads/main/nabaruBrainrot"))()
-    end
-})
-
-BrainrotSection:AddButton({
-    Name = "oRee Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://oreofdev.github.io/Sw1ftSync/Raw/SSXBr/"))()
-    end
-})
-
-BrainrotSection:AddButton({
-    Name = "Makal Hub",
-    Callback = function()
-        local a,b,c=loadstring,(syn and syn.request)or(http and http.request)or(request)or(http_request),assert
-        c(a and b,"Executor not Supported")
-        a(b({Url="https://makalhub.vercel.app/api/script/loader",Method="GET"}).Body)()
-    end
-})
-
--- ==================================================================================================
 -- ABA GROW A GARDEN
--- ==================================================================================================
+local GGTab = Window:CreateTab("Grow a Garden", 4483345998)
+local GGSection = GGTab:CreateSection("🌱 Garden Farm")
 
-local GrowGardenTab = Window:MakeTab({
-    Name = "Grow a Garden",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
+local GGButtons = {
+   {Name = "Speed Hub X", URL = "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"},
+   {Name = "No-Lag Hub", URL = "https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV2.lua"},
+   {Name = "ThunderZ Hub", URL = "https://raw.githubusercontent.com/ThundarZ/Welcome/main/Main/GaG/Main.lua"},
+   {Name = "Dupe GAG", URL = "https://raw.githubusercontent.com/SPIDROSH/Grow-a-Garden/main/DGAG"},
+   {Name = "Lunor Hub", URL = "https://lunor.dev/loader"}
+}
 
-local GGSection = GrowGardenTab:AddSection({
-    Name = "🌱 Garden Farm"
-})
+for _, btn in pairs(GGButtons) do
+   GGTab:CreateButton({
+      Name = btn.Name,
+      Callback = function()
+         loadstring(game:HttpGet(btn.URL, true))()
+      end,
+   })
+end
 
-GGSection:AddButton({
-    Name = "Speed Hub X",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-    end
-})
+-- ABA 99 NOITES NA FLORESTA
+local NEFTab = Window:CreateTab("99 Noites na Floresta", 4483345998)
+local NEFSection = NEFTab:CreateSection("🌲 99 Noites Farm")
 
-GGSection:AddButton({
-    Name = "No-Lag Hub",
-    Callback = function()
-        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV2.lua"))()
-    end
-})
+local NEFButtons = {
+   {Name = "Fast Hub", URL = "https://raw.githubusercontent.com/adibhub1/99-nighit-in-forest/main/99%20night%20in%20forest"},
+   {Name = "EF Hub", URL = "https://raw.githubusercontent.com/1craku/Test/main/99%20Nights%20in%20the%20Forest%202"},
+   {Name = "H4x Hub", URL = "https://raw.githubusercontent.com/H4xScripts/Loader/main/loader.lua"}
+}
 
-GGSection:AddButton({
-    Name = "ThunderZ Hub",
-    Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/ThundarZ/Welcome/refs/heads/main/Main/GaG/Main.lua'))()
-    end
-})
+for _, btn in pairs(NEFButtons) do
+   NEFTab:CreateButton({
+      Name = btn.Name,
+      Callback = function()
+         loadstring(game:HttpGet(btn.URL, true))()
+      end,
+   })
+end
 
-GGSection:AddButton({
-    Name = "Dupe GAG",
-    Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/SPIDROSH/Grow-a-Garden/refs/heads/main/DGAG'))()
-    end
-})
-
-GGSection:AddButton({
-    Name = "Lunor Hub",
-    Callback = function()
-        loadstring(game:HttpGet('https://lunor.dev/loader'))()
-    end
-})
-
--- ==================================================================================================
--- ABA 99 NOITES EM UMA FLORESTA
--- ==================================================================================================
-
-local NEFTab = Window:MakeTab({
-    Name = "99 Noites na Floresta",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local NERF9Section = NEFTab:AddSection({
-    Name = "🌲 99 Noites na Floresta Farm"
-})
-
-NERF9Section:AddButton({
-    Name = "Fast Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/adibhub1/99-nighit-in-forest/refs/heads/main/99%20night%20in%20forest"))()
-    end
-})
-
-NERF9Section:AddButton({
-    Name = "EF Hub",
-    Callback = function()
-        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/1craku/Test/refs/heads/main/99%20Nights%20in%20the%20Forest%202"))()
-    end
-})
-
-NERF9Section:AddButton({
-    Name = "H4x Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/H4xScripts/Loader/refs/heads/main/loader.lua", true))()
-    end
-})
-
--- ==================================================================================================
 -- ABA BLUE LOCK RIVAIS
--- ==================================================================================================
+local BLRTab = Window:CreateTab("Blue Lock Rivais", 4483345998)
+local BLRSection = BLRTab:CreateSection("⚽ BLR Auto Farm")
 
-local BLRTab = Window:MakeTab({
-    Name = "Blue Lock Rivais",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
+BLRTab:CreateButton({
+   Name = "Alchemy Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
+   end,
 })
 
-local BLR1Section = BLRTab:AddSection({
-    Name = "⚽ BLR Auto Farm"
-})
-
-BLR1Section:AddButton({
-    Name = "Alchemy Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
-    end
-})
-
--- ==================================================================================================
 -- ABA FORSAKEN
--- ==================================================================================================
+local FRTab = Window:CreateTab("Forsaken", 4483345998)
+local FRSection = FRTab:CreateSection("🔪 Forsaken Auto Farm")
 
-local FRTab = Window:MakeTab({
-    Name = "Forsaken",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
+FRTab:CreateButton({
+   Name = "Funny Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://rawscripts.net/raw/Forsaken-Funny-Hub-V2-42056"))()
+   end,
 })
 
-local FSKSection = FRTab:AddSection({
-    Name = "🔪 Forsaken Auto Farm"
-})
-
-FSKSection:AddButton({
-    Name = "Funny Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Forsaken-Funny-Hub-V2-42056"))()
-    end
-})
-
--- ==================================================================================================
 -- ABA DEAD RAILS
--- ==================================================================================================
+local DRTab = Window:CreateTab("Dead Rails", 4483345998)
+local DRSection = DRTab:CreateSection("💴 Auto Bound")
 
-local DRTab = Window:MakeTab({
-    Name = "Dead Rails",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
+local DRButtons = {
+   {Name = "Tbao Hub", URL = "https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubDeadRails"},
+   {Name = "Than Hub", URL = "https://raw.githubusercontent.com/thantzy/thanhub/main/thanv1"},
+   {Name = "Native Hub", URL = "https://getnative.cc/script/loader"},
+   {Name = "Speed Hub X", URL = "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"}
+}
 
-local DRLSection = DRTab:AddSection({
-    Name = "💴 Auto Bound"
-})
+for _, btn in pairs(DRButtons) do
+   DRTab:CreateButton({
+      Name = btn.Name,
+      Callback = function()
+         loadstring(game:HttpGet(btn.URL, true))()
+      end,
+   })
+end
 
-DRLSection:AddButton({
-    Name = "Tbao Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"))()
-    end
-})
-
-DRLSection:AddButton({
-    Name = "Than Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
-    end
-})
-
-DRLSection:AddButton({
-    Name = "Native Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://getnative.cc/script/loader"))()
-    end
-})
-
-DRLSection:AddButton({
-    Name = "Speed Hub X",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
-    end
-})
-
--- ==================================================================================================
 -- ABA ARISE CROSSOVER
--- ==================================================================================================
+local ARTab = Window:CreateTab("Arise Crossover", 4483345998)
+local ARSection = ARTab:CreateSection("♟ Em breve...")
 
-local ARTab = Window:MakeTab({
-    Name = "Arise Crossover",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
+-- ABA CAR DEALERSHIP TYCOON
+local CDTab = Window:CreateTab("Car Dealership", 4483345998)
+local CDSection = CDTab:CreateSection("🚗 Auto Farm")
 
-local ARCSection = ARTab:AddSection({
-    Name = "♟ Arise Crossover - Em breve..."
-})
+local CDButtons = {
+   {Name = "Auto Farm - JuninhoOGado", URL = "https://raw.githubusercontent.com/JuninhoOGado/ScriptsSite/main/Script245"},
+   {Name = "Norepinefina Hub", URL = "https://norepinefrina.com"},
+   {Name = "Auto Race", URL = "https://raw.githubusercontent.com/Marco8642/science/main/Vehicle%20legends"}
+}
 
--- ==================================================================================================
--- CAR DEALERSHIP TYCOON
--- ==================================================================================================
+for _, btn in pairs(CDButtons) do
+   CDTab:CreateButton({
+      Name = btn.Name,
+      Callback = function()
+         loadstring(game:HttpGet(btn.URL, true))()
+      end,
+   })
+end
 
-local CDTTab = Window:MakeTab({
-    Name = "Car Dealership Tycoon",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local CDSection = CDTTab:AddSection({
-    Name = "🚗 Car Dealership Auto Farm"
-})
-
-CDSection:AddButton({
-    Name = "Auto Farm - JuninhoOGado",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/JuninhoOGado/ScriptsSite/main/Script245"))()
-    end
-})
-
-CDSection:AddButton({
-    Name = "Norepinefina Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://norepinefrina.com"))()
-    end
-})
-
-CDSection:AddButton({
-    Name = "Auto Race",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/Vehicle%20legends"))()
-    end
-})
-
--- ==================================================================================================
 -- ABA BED WARS
--- ==================================================================================================
+local BDTab = Window:CreateTab("Bed Wars", 4483345998)
+local BDSection = BDTab:CreateSection("🛏 Bed Wars Farm")
 
-local BDTab = Window:MakeTab({
-    Name = "Bed Wars",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
+BDTab:CreateButton({
+   Name = "VapeVoid Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWRewrite/main/NewMainScript.lua", true))()
+   end,
 })
 
-local BDWSection = BDTab:AddSection({
-    Name = "🛏 Bed Wars - farm"
-})
-
-BDWSection:AddButton({
-    Name = "VapeVoid Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWRewrite/main/NewMainScript.lua", true))()
-    end
-})
-
--- ==================================================================================================
 -- ABA RACE CLICKER
--- ==================================================================================================
+local RCTab = Window:CreateTab("Race Clicker", 4483345998)
+local RCSection = RCTab:CreateSection("🚥 Race Clicker Farm")
 
-local RCTab = Window:MakeTab({
-    Name = "Race Clicker",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
+RCTab:CreateButton({
+   Name = "Auto Farm",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/RaceClicker"))()
+   end,
 })
 
-local RCCSection = RCTab:AddSection({
-    Name = "🚥 Race clicker Farm"
+-- ABA STAND AWAKENING
+local SATab = Window:CreateTab("Stand Awakening", 4483345998)
+local SASection = SATab:CreateSection("🕴 Stand Farm")
+
+SATab:CreateButton({
+   Name = "Auto Farm",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/snowbrkkkk/main/main/Standsawakening"))()
+   end,
 })
 
-RCCSection:AddButton({
-    Name = "Auto farm",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/RaceClicker"))()
-    end
+-- Notificação de inicialização
+Rayfield:Notify({
+   Title = "D4gon Hub",
+   Content = "Carregado com sucesso!",
+   Duration = 5,
+   Image = 4483345998,
+   Actions = {
+      Ignore = {
+         Name = "Ok",
+         Callback = function()
+            print("Usuário confirmou a notificação")
+         end
+      },
+   },
 })
 
--- ==================================================================================================
--- Stand Awakening
--- ==================================================================================================
-
-local STATab = Window:MakeTab({
-    Name = "Stand Awakening",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local SASection = STATab:AddSection({
-    Name = "🕴 Stand Farm"
-})
-
-SASection:AddButton({
-    Name = "Auto farm",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/snowbrkkkk/main/refs/heads/main/Standsawakening"))()
-    end
-})
-
--- ==================================================================================================
--- Iniciar
--- ==================================================================================================
-
-OrionLib:MakeNotification({
-    Name = "D4gon Hub",
-    Content = "carregando...",
-    Image = "rbxassetid://4483345998",
-    Time = 5
-})
-
-OrionLib:Init()
+-- Inicializa a UI
+Rayfield:LoadConfiguration()
