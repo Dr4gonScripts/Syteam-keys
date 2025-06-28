@@ -24,13 +24,12 @@ local SectionMain = AuraHub:CreateSection("Funções Principais")
 
 -- WalkSpeed Slider
 SectionMain:CreateSlider({
-    Name = "WalkSpeed",
+    Name = "Walk Speed",
     Min = 16,
-    Max = 150,
+    Max = 200,
     Default = 16,
-    Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
-    ValueName = "speed",
+    Suffix = " WalkSpeed",
     Callback = function(value)
         local character = game.Players.LocalPlayer.Character
         if character then
@@ -39,18 +38,17 @@ SectionMain:CreateSlider({
                 humanoid.WalkSpeed = value
             end
         end
-    end
+    end,
 })
 
 -- JumpPower Slider
 SectionMain:CreateSlider({
-    Name = "JumpPower",
+    Name = "Jump Power",
     Min = 50,
-    Max = 200,
+    Max = 250,
     Default = 50,
-    Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
-    ValueName = "jump",
+    Suffix = " JumpPower",
     Callback = function(value)
         local character = game.Players.LocalPlayer.Character
         if character then
@@ -59,7 +57,32 @@ SectionMain:CreateSlider({
                 humanoid.JumpPower = value
             end
         end
-    end
+    end,
+})
+
+-- Anti-AFK Button
+SectionMain:CreateButton({
+    Name = "Ativar Anti-AFK",
+    Callback = function()
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:Connect(function()
+            vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+            task.wait(1)
+            vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+        end)
+    end,
+})
+
+-- Reset Button
+SectionMain:CreateButton({
+    Name = "Resetar Personagem",
+    Callback = function()
+        local character = game.Players.LocalPlayer.Character
+        local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.Health = 0
+        end
+    end,
 })
 
 Rayfield:LoadConfiguration()
