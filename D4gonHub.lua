@@ -4,8 +4,8 @@ local Window = Rayfield:CreateWindow({
     Name = "XD4X Hub",
     LoadingTitle = "XD4X Hub",
     LoadingSubtitle = "by D4GON",
-    Theme = "Default",
-    ToggleUIKeybind = "K",
+    Theme = "Dark",
+    ToggleUIKeybind = Enum.KeyCode.K,
     ConfigurationSaving = {
         Enabled = true,
         FolderName = nil,
@@ -19,50 +19,53 @@ local Window = Rayfield:CreateWindow({
     KeySystem = false,
 })
 
--- Função para criar uma aba com seção e botões de teste
-local function criarAba(nomeAba)
-    local aba = Window:CreateTab(nomeAba, 4483362458)
-    local sec = aba:CreateSection("Seção de Teste")
+-- Criar aba Main
+local MainTab = Window:CreateTab("XD4X Hub", 4483362458)
+local MainSection = MainTab:CreateSection("Funções Principais")
 
-    sec:CreateToggle({
-        Name = "Toggle de teste em "..nomeAba,
-        CurrentValue = false,
-        Callback = function(val)
-            print(nomeAba.." toggle set to:", val)
-        end,
-    })
+MainSection:CreateToggle({
+    Name = "God Speed (16 → 100)",
+    CurrentValue = false,
+    Flag = "GodSpeedToggle",
+    Callback = function(value)
+        local player = game.Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = value and 100 or 16
+        end
+    end
+})
 
-    sec:CreateButton({
-        Name = "Botão de teste em "..nomeAba,
-        Callback = function()
-            print("Botão em "..nomeAba.." pressionado")
-            Rayfield:Notify({Title=nomeAba, Content="Botão pressionado!", Duration=3})
-        end,
-    })
+MainSection:CreateToggle({
+    Name = "Super Pulo (50 → 120)",
+    CurrentValue = false,
+    Flag = "SuperJumpToggle",
+    Callback = function(value)
+        local player = game.Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.JumpPower = value and 120 or 50
+        end
+    end
+})
 
-    return aba
-end
-
--- Criar todas as abas com nomes do seu hub
-local nomesAbas = {
-    "XD4X Hub",
-    "Muscles Legends",
-    "Blox Fruits",
-    "Roube um Brainrot",
-    "Grow a Garden",
-    "99 Noites na Floresta",
-    "Blue Lock Rivais",
-    "Forsaken",
-    "Dead Rails",
-    "Arise Crossover",
-    "Car Dealership Tycoon",
-    "Bed Wars",
-    "Race Clicker",
-    "Stand Awakening"
-}
-
-for _, nome in ipairs(nomesAbas) do
-    criarAba(nome)
-end
+MainSection:CreateButton({
+    Name = "Ativar Anti-AFK",
+    Callback = function()
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:Connect(function()
+            vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+            wait(1)
+            vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+        end)
+        Rayfield:Notify({
+            Title = "XD4X Hub",
+            Content = "Anti-AFK ativado!",
+            Duration = 5
+        })
+    end
+})
 
 Rayfield:LoadConfiguration()
