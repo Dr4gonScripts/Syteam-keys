@@ -224,6 +224,33 @@ UtilitySection:AddButton({
 	end
 })
 
+-- Botão para Fly Universal
+UtilitySection:AddButton({
+	Name = "Fly Universal",
+	Callback = function()
+		print("Executando script de Fly Universal...")
+		loadstring(game:HttpGet("https://pastebin.com/raw/xuSMWfDu"))()
+	end
+})
+
+-- Botão para TP Universal
+UtilitySection:AddButton({
+	Name = "TP Universal",
+	Callback = function()
+		print("Executando script de TP Universal...")
+		loadstring(game:HttpGet("https://pastebin.com/raw/AbDM2er1"))()
+	end
+})
+
+-- Botão para Anti Afk
+UtilitySection:AddButton({
+	Name = "Anti Afk",
+	Callback = function()
+		print("Executando script de Anti Afk...")
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KazeOnTop/Rice-Anti-Afk/main/Wind", true))()
+	end
+})
+
 
 -- Botão para mudar o FOV (Campo de Visão)
 UtilitySection:AddToggle({
