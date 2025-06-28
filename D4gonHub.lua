@@ -33,23 +33,13 @@ local Window = OrionLib:MakeWindow({
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "OrionTest",
-    IntroText = "Hub com inúmeras funções."
-})
-
--- Define a tecla de toggle para abrir/fechar a UI
-OrionLib:SetToggleKey(Enum.KeyCode.P) -- Pressione a tecla 'P' para mostrar/esconder a UI
-
--- Cria a aba "Main"
-local Tab = Window:MakeTab({
-	Name = "Main",
-	Icon = "rbxassetid://2549575201",
-	PremiumOnly = false
+    IntroText = "D4gon Hub."
 })
 
 -- Notificação de que a UI está carregando (usando 'Title' conforme a documentação)
 OrionLib:MakeNotification({
 	Title = "D4gon Hub",
-	Content = "Hub carregado! Pressione 'P' para abrir.",
+	Content = "Hub carregado! Use a tecla padrão para abrir/fechar (geralmente 'Insert' ou 'Right Shift').",
 	Image = "rbxassetid://4483345998",
 	Time = 10
 })
