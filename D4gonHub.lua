@@ -172,13 +172,7 @@ BrainrotSection:AddButton({
 	end
 })
 
-BrainrotSection:AddButton({
-	Name = "Makal Hub",
-	Callback = function()
-		print("Executando script...")
-		local a,b,c=loadstring,(syn and syn.request)or(http and http.request)or(request)or(http_request),assert;c(a and b,"Executor not Supported")a(b({Url="https://makalhub.vercel.app/api/script/loader",Method="GET"}).Body)()
-	end
-})
+
 
 
 -- ==================================================================================================
