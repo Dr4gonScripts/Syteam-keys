@@ -1,9 +1,10 @@
--- Carrega a biblioteca Rayfield do link raw com o nome do arquivo atualizado
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/Rayfield.lua"))()
+-- Carrega a biblioteca Rayfield usando o URL oficial e estável
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
--- Define a chave correta e o link do Discord
+-- Define a chave correta e o link do Discord e Linktree
 local CORRETA_CHAVE = "Dr4gonX"
 local DISCORD_LINK = "https://discord.gg/PvssedzXpT"
+local LINKTREE_LINK = "https://linktr.ee/D4gonBRX"
 
 -- Câmera local e serviços
 local Players = game:GetService("Players")
@@ -12,18 +13,17 @@ local LocalPlayer = Players.LocalPlayer
 local Workspace = game:GetService("Workspace")
 local Camera = Workspace.CurrentCamera
 
--- Variáveis para o sistema de espectador
+-- Variáveis para os sistemas de controle
 local isSpectating = false
 local spectateConnection = nil
 local originalCameraType = Camera.CameraType
-
--- Variáveis para as novas funções
 local isESP_Enabled = false
 local isAimbot_Enabled = false
 local isNoclip_Enabled = false
 local noclipConnection = nil
 
 --- Sistema de Chave (Login) ---
+-- Cria uma janela de login que só será destruída após a chave correta ser inserida
 local KeyWindow = Rayfield:CreateWindow({
     Name = "Sistema de Chave",
     Description = "Insira a chave para acessar o hub.",
@@ -39,7 +39,7 @@ local KeyTextBox = KeySection:AddInput({
     Name = "Chave de Acesso",
     Placeholder = "Insira a chave aqui...",
     Callback = function()
-        -- Não faz nada aqui, a verificação será feita no botão
+        -- A verificação será feita no botão para melhor controle
     end
 })
 
@@ -51,12 +51,14 @@ KeySection:AddButton({
             -- Se a chave estiver correta, destrói a janela de login e cria a UI principal
             KeyWindow:Destroy()
 
-            -- Cria a janela principal da UI
+            -- Cria a janela principal da UI "D4gon UI"
             local Window = Rayfield:CreateWindow({
                 Name = "D4gon UI",
                 Description = "Hub com inúmeras funções.",
+                Icon = 0, -- Sem ícone. Mude para um ID ou string para usar um ícone.
                 LoadingTitle = "Carregando Rayfield...",
-                LoadingSubtitle = "Aguarde um momento...",
+                LoadingSubtitle = "by Sirius",
+                Theme = "Default",
                 ToggleUIKeybind = "P" -- A tecla 'P' para mostrar/esconder a UI
             })
 
@@ -64,7 +66,7 @@ KeySection:AddButton({
 
             --- Funções de Movimento ---
             local MovementSection = HubTab:AddSection("Movimento")
-
+            
             MovementSection:AddSlider({
                 Name = "Walk Speed",
                 Description = "Ajusta a velocidade de movimento do seu personagem.",
@@ -180,16 +182,13 @@ KeySection:AddButton({
                     isESP_Enabled = toggled
                     if isESP_Enabled then
                         updateESP()
-                        -- Conecta a função para atualizar o ESP quando um jogador é adicionado
                         Players.PlayerAdded:Connect(updateESP)
-                        -- Conecta a função para remover o highlight quando um jogador sai
                         Players.PlayerRemoving:Connect(function(player)
                             if player.Character and player.Character:FindFirstChild("PlayerHighlight") then
                                 player.Character.PlayerHighlight:Destroy()
                             end
                         end)
                     else
-                        -- Desativa todos os highlights quando a função é desligada
                         for _, player in ipairs(Players:GetPlayers()) do
                             if player.Character and player.Character:FindFirstChild("PlayerHighlight") then
                                 player.Character.PlayerHighlight.Enabled = false
@@ -212,7 +211,6 @@ KeySection:AddButton({
                                 local closestPlayer = nil
                                 local minDistance = math.huge
                                 
-                                -- Encontra o jogador mais próximo
                                 for _, player in ipairs(Players:GetPlayers()) do
                                     if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
                                         local distance = (LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
@@ -224,7 +222,6 @@ KeySection:AddButton({
                                 end
 
                                 if closestPlayer and closestPlayer.Character and closestPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                                    -- Aponta a câmera para o jogador mais próximo
                                     Camera.CFrame = CFrame.new(Camera.CFrame.Position, closestPlayer.Character.HumanoidRootPart.Position)
                                 end
                             end
@@ -241,27 +238,24 @@ KeySection:AddButton({
                 Callback = function(toggled)
                     isNoclip_Enabled = toggled
                     if isNoclip_Enabled then
-                        -- Desativa a colisão do seu personagem
                         LocalPlayer.Character.Archivable = true
                         for _, part in ipairs(LocalPlayer.Character:GetDescendants()) do
                             if part:IsA("BasePart") then
                                 part.CanCollide = false
                             end
                         end
-                        -- Garante que o personagem não caia no chão
                         noclipConnection = RunService.Heartbeat:Connect(function()
                             if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
                                 local rootPart = LocalPlayer.Character.HumanoidRootPart
                                 local floor = Workspace:FindPartOnRay(Ray.new(rootPart.Position, Vector3.new(0, -100, 0)))
                                 if floor and floor.Instance and floor.Instance.Parent ~= LocalPlayer.Character then
-                                    if floor.Distance > 5 then -- Se estiver longe do chão, mantem a posição
+                                    if floor.Distance > 5 then
                                         rootPart.Velocity = Vector3.new(0, 0, 0)
                                     end
                                 end
                             end
                         end)
                     else
-                        -- Reativa a colisão do personagem
                         for _, part in ipairs(LocalPlayer.Character:GetDescendants()) do
                             if part:IsA("BasePart") then
                                 part.CanCollide = true
@@ -275,10 +269,10 @@ KeySection:AddButton({
                 end
             })
 
-            --- Outras Funções ---
-            local OtherSection = HubTab:AddSection("Social")
+            --- Funções Sociais ---
+            local SocialSection = HubTab:AddSection("Social")
             
-            OtherSection:AddButton({
+            SocialSection:AddButton({
                 Name = "Entrar no Discord",
                 Description = "Clique para ver o link do servidor.",
                 Callback = function()
@@ -286,12 +280,11 @@ KeySection:AddButton({
                 end
             })
 
-            -- NOVO: Botão para o Linktree
-            OtherSection:AddButton({
+            SocialSection:AddButton({
                 Name = "Meu Linktree",
                 Description = "Veja todas as minhas redes sociais.",
                 Callback = function()
-                    print("Linktree: https://linktr.ee/D4gonBRX")
+                    print("Linktree: " .. LINKTREE_LINK)
                 end
             })
 
