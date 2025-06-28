@@ -22,19 +22,41 @@ local Window = Rayfield:CreateWindow({
 local AuraHub = Window:CreateTab("XD4X Hub", 4483362458)
 local SectionMain = AuraHub:CreateSection("Funções Principais")
 
-AuraHub:CreateSlider({
+-- WalkSpeed Slider
+SectionMain:CreateSlider({
     Name = "WalkSpeed",
-    Range = {16, 200},
+    Min = 16,
+    Max = 150,
+    Default = 16,
+    Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
-    Suffix = "Speed",
-    CurrentValue = 16,
-    SectionParent = SectionMain,
-    Callback = function(Value)
-        local character = game:GetService("Players").LocalPlayer.Character
+    ValueName = "speed",
+    Callback = function(value)
+        local character = game.Players.LocalPlayer.Character
         if character then
             local humanoid = character:FindFirstChildOfClass("Humanoid")
             if humanoid then
-                humanoid.WalkSpeed = Value
+                humanoid.WalkSpeed = value
+            end
+        end
+    end
+})
+
+-- JumpPower Slider
+SectionMain:CreateSlider({
+    Name = "JumpPower",
+    Min = 50,
+    Max = 200,
+    Default = 50,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 1,
+    ValueName = "jump",
+    Callback = function(value)
+        local character = game.Players.LocalPlayer.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.JumpPower = value
             end
         end
     end
