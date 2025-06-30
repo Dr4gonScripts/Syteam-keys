@@ -98,7 +98,7 @@ RBTab:AddButton({
 RBTab:AddButton({
 	Name = "oRee Hub",
 	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/oreofdev/Sw1ftSync/Raw/SSXBr/'))()
+		loadstring(game:HttpGet("https://oreofdev.github.io/Sw1ftSync/Raw/SSXBr/"))()
 	end    
 })
 
