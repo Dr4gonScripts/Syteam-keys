@@ -1,7 +1,7 @@
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
 
 local Window = OrionLib:MakeWindow({
-	Name = "ROBLOKI HUB 6.2.9",
+	Name = "ROBLOKI HUB 6.3.0",
 	HidePremium = false,
 	SaveConfig = true,
 	ConfigFolder = "Project segredo"
@@ -205,6 +205,195 @@ NFTab:AddButton({
 	Callback = function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/1craku/Test/refs/heads/main/99%20Nights%20in%20the%20Forest%202'))()
 	end    
+})
+
+
+-- ABA SUPER LEAGUE SOCCER
+local SLSTab = Window:MakeTab({
+	Name = "⚽Super League Soccer",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local sevenSection = SLSTab:AddSection({
+	Name = "Farms and Hitbox"
+})
+
+SLSTab:AddButton({
+	Name = "Reach Op - Ryo Ask",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr4gonScripts/MEU-SCRIPTS/refs/heads/main/RYO.ASK.HUB.By.D4.lua"))()
+	end    
+})
+
+SLSTab:AddButton({
+	Name = "Nothing X Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://rawscripts.net/raw/Super-League-Soccer!-NOTHING-X-HUB-V2-38977"))()
+	end    
+})
+
+-- Arise Crossover
+local ACTab = Window:MakeTab({
+   Name = "🦸 Arise Crossover",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local eightSection = ACTab:AddSection({
+   Name = "👻 Auto Farm"
+})
+
+ACTab:AddButton({
+   Name = "Speed Hub X",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua'))()
+   end    
+})
+
+-- ABA ANIME LAST STAND
+
+local ALSSTab = Window:MakeTab({
+   Name = "🗡️ Anime Last Stand",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local nineSection = ALSSTab:AddSection({
+   Name = "⚔️ Auto Farm"
+})
+
+ALSSTab:AddButton({
+   Name = "Buang Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/alan11ago/Hub/refs/heads/main/ImpHub.lua"))()
+   end    
+})
+
+ALSSTab:AddButton({
+   Name = "Miku Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/U4MjceNC"))()
+   end    
+})
+
+-- ABA UNIVERSAL
+
+local UTab = Window:MakeTab({
+   Name = "🌌 Universal",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local tenSection = UTab:AddSection({
+   Name = "🌟 Universal Scripts"
+})
+
+UTab:AddButton({
+   Name = "Infinite Yield",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end    
+})
+
+UTab:AddButton({
+   Name = "CMD X",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source.lua'))()
+   end    
+})
+
+UTab:AddButton({
+   Name = "Speed Hub X",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua'))()
+   end    
+})
+
+UTab:AddButton({
+   Name = "Ghost Hub",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()
+   end    
+})
+
+UTab:AddButton({
+   Name = "RSPY",
+   Callback = function()
+      loadstring(game:HttpGet("https://github.com/exxtremestuffs/SimpleSpySource/raw/master/SimpleSpy.lua"))()
+   end    
+})
+
+-- ABA TOWER OF HELL
+
+local THTab = Window:MakeTab({
+   Name = "🗼 Tower of Hell",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local elevenSection = THTab:AddSection({
+   Name = "🏰 Auto Tower"
+})
+
+THTab:AddButton({
+   Name = "TJ Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptmaker099/TowerOfHellScriptUpdate/refs/heads/main/Tower/Of/Hell/Update/Script/By/Timothy/Source"))()
+   end    
+})
+
+-- Aba Brookhaven
+
+local BHTab = Window:MakeTab({
+   Name = "🏡 Brookhaven",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local twelveSection = BHTab:AddSection({
+   Name = "🏠 Auto Farm"
+})
+
+
+BHTab:AddButton({
+   Name = "SP Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://rawscripts.net/raw/Brookhaven-RP-SP-Hub-New-Uptade-2-March-2025-30618"))()
+   end    
+})
+
+BHTab:AddButton({
+   Name = "Chaos Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Luscaa22/Calabocaa/refs/heads/main/ChaosHub"))()
+   end    
+})
+
+-- aba flee the facility
+
+local FTFTab = Window:MakeTab({
+   Name = "🏃 Flee the Facility",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local thirteenSection = FTFTab:AddSection({
+   Name = "🏃 Farm"
+})
+
+FTFTab:AddButton({
+   Name = "Olympia Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/B-Xs/FPlus/refs/heads/main/Loader"))()
+   end    
+})
+
+FTFTab:AddButton({
+   Name = "Antora Hub",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/K9ntra/Antora/main/abc.lua'))()
+   end    
 })
 
 OrionLib:Init()
