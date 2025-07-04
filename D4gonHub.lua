@@ -109,6 +109,20 @@ RBTab:AddButton({
 	end    
 })
 
+RBTab:AddButton({
+	Name = "Mugen Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Youifpg/Mugen/refs/heads/main/Mugen.lua"))()
+	end    
+})
+
+RBTab:AddButton({
+	Name = "Beecon Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconBossScript/BeeconHub/main/BeeconHub"))()
+	end    
+})
+
 -- ABA GROW A GARDEN
 local GGTab = Window:MakeTab({
 	Name = "🌱 Grow a Garden",
@@ -204,6 +218,13 @@ NFTab:AddButton({
 	Name = "EF Hub",
 	Callback = function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/1craku/Test/refs/heads/main/99%20Nights%20in%20the%20Forest%202'))()
+	end    
+})
+
+NFTab:AddButton({
+	Name = "Overflow Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/OverflowBGSI/Overflow/refs/heads/main/loader.txt"))()
 	end    
 })
 
@@ -393,6 +414,124 @@ FTFTab:AddButton({
    Name = "Antora Hub",
    Callback = function()
       loadstring(game:HttpGet('https://raw.githubusercontent.com/K9ntra/Antora/main/abc.lua'))()
+   end    
+})
+
+-- Aba game ink
+
+local GITab = Window:MakeTab({
+   Name = "🦑 Game Ink",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local fourteenSection = GITab:AddSection({
+   Name = "🐙 Auto win"
+})
+
+GITab:AddButton({
+   Name = "Nexus Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/NexorHub/Scripts.lua/refs/heads/main/InkGame.lua"))()
+   end    
+})
+
+GITab:AddButton({
+   Name = "Ink Game Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/InkGame"))()
+   end    
+})
+
+GITab:AddButton({
+   Name = "Legends Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://pastefy.app/ULaWpxKm/raw"))()
+   end    
+})
+
+-- ABA SQUID X
+
+local SQTab = Window:MakeTab({
+   Name = "🦑 Squid X",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local fifteenSection = SQTab:AddSection({
+   Name = "🦑 Auto Win"
+})
+
+SQTab:AddButton({
+   Name = "Squid Game Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/SquidGameX.lua"))()
+   end    
+})
+
+SQTab:AddButton({
+   Name = "Squid Game X",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/OverflowBGSI/Overflow/refs/heads/main/SquidGameX.lua"))()
+   end    
+})
+
+-- ABA VOLLEY BALL LEGENDES
+
+local VLTTab = Window:MakeTab({
+   Name = "🏐 Volley Ball Legends",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local sixteenSection = VLTTab:AddSection({
+   Name = "🏐 Auto Farm"
+})
+
+VLTTab:AddButton({
+   Name = "Napoleon Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/raydjs/napoleonHub/refs/heads/main/src.lua"))()
+   end    
+})
+
+VLTTab:AddButton({
+   Name = "Sterling Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/Zayn31214/name/refs/heads/main/SterlingNew"))()
+   end    
+})
+
+-- ABA ANIME SHADOW
+
+local ASTab = Window:MakeTab({
+   Name = "🗡️ Anime Shadow",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local seventeenSection = ASTab:AddSection({
+   Name = "⚔️ Auto Farm"
+})
+
+ASTab:AddButton({
+   Name = "NS Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/OhhMyGehlee/Shad/refs/heads/main/2"))()
+   end    
+})
+
+ASTab:AddButton({
+   Name = "Lyzer Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/Kazeruy/LyzerHub/main/ScriptMain"))()
+   end    
+})
+
+ASTab:AddButton({
+   Name = "Akatsuki Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/AkatsukiHub1/Shadow2/refs/heads/main/README.md"))()
    end    
 })
 
