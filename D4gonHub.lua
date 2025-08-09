@@ -25,9 +25,9 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "Beamed V2 - benishot",
+	Name = "Beamed V2 - Benlovesul",
 	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/ben1x1x1x1x/V2/refs/heads/main/BeamedV2FreeLoader'))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/ben1x1x1x1x/V2/refs/heads/main/BeamedV2FreeLoader"))()
 	end    
 })
 
@@ -35,6 +35,35 @@ Tab:AddButton({
 	Name = "KTM - KTMx2025",
 	Callback = function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/zapstreams123/KTMHUB/refs/heads/main/PublicVersion'))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Lurnai Hub - HavocBestfr",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Lurnai/Games/Loader.lua"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Nebula Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/ttvkaiser/Nebula-Hub/refs/heads/main/Muscle-Legends/.lua"))()
+	end    
+})
+
+
+Tab:AddButton({
+	Name = "TOKATTK",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/2581235867/21/refs/heads/main/By%20Tokattk"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Doca V1",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/CAXAP26BKyCH/-Doca-V1/refs/heads/main/Free%20Version"))()
 	end    
 })
 
