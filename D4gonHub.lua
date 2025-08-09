@@ -625,7 +625,7 @@ local AXTab = Window:MakeTab({
 })
 
 local 	twentySection = AXTab:AddSection({
-   Name = "🏀 Auto Farm"
+   Name = "👔 Auto Farm"
 })
 
 AXTab:AddButton({
