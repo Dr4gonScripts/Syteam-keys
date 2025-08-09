@@ -1,7 +1,7 @@
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
 
 local Window = OrionLib:MakeWindow({
-	Name = "ROBLOKI HUB 6.3.2",
+	Name = "ROBLOKI HUB 7.0.0",
 	HidePremium = false,
 	SaveConfig = true,
 	ConfigFolder = "Project segredo"
@@ -532,6 +532,51 @@ ASTab:AddButton({
    Name = "Akatsuki Hub",
    Callback = function()
 	  loadstring(game:HttpGet("https://raw.githubusercontent.com/AkatsukiHub1/Shadow2/refs/heads/main/README.md"))()
+   end    
+})
+
+-- Aba VoxSeas
+
+local VSTab = Window:MakeTab({
+   Name = "🍊 Vox Seas",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local eighteenSection = VSTab:AddSection({
+   Name = "⚔️ Auto Farm"
+})
+
+VSTab:AddButton({
+   Name = "IDK Hub",
+   Callback = function()
+	  loadstring(game:HttpGet('https://raw.githubusercontent.com/shakaUnlocked/IiI/refs/heads/main/vxs.lua'))()
+   end    
+})
+
+VSTab:AddButton({
+   Name = "Nexus Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/CrazyHub123/NexusHubRevival/refs/heads/main/NewLoader.lua"))()
+   end    
+})
+
+-- Basketball: Zero
+
+local BZTab = Window:MakeTab({
+   Name = "🏀 BasketBall: Zero",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local 	nineteenSection = BZTab:AddSection({
+   Name = "⚔️ Auto Farm"
+})
+
+BZTab:AddButton({
+   Name = "Pro Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0abf22d9dc1307a6cf1a4a17955e312d.lua"))()
    end    
 })
 
