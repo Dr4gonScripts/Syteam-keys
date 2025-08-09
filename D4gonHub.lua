@@ -257,10 +257,17 @@ NFTab:AddButton({
 	end    
 })
 
+NFTab:AddButton({
+	Name = "99 Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/gHQGTNYH"))()
+	end    
+})
+
 
 -- ABA SUPER LEAGUE SOCCER
 local SLSTab = Window:MakeTab({
-	Name = "⚽Super League Soccer",
+	Name = "⚽ Super League Soccer",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
@@ -599,7 +606,7 @@ local BZTab = Window:MakeTab({
 })
 
 local 	nineteenSection = BZTab:AddSection({
-   Name = "⚔️ Auto Farm"
+   Name = "🏀 Auto Farm"
 })
 
 BZTab:AddButton({
@@ -608,5 +615,134 @@ BZTab:AddButton({
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0abf22d9dc1307a6cf1a4a17955e312d.lua"))()
    end    
 })
+
+-- All Star Tower Defense X
+
+local AXTab = Window:MakeTab({
+   Name = "🎎 All Star Tower Defense X",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local 	twentySection = AXTab:AddSection({
+   Name = "🏀 Auto Farm"
+})
+
+AXTab:AddButton({
+   Name = "Jimi Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/bunnnwee/JimiHub/refs/heads/main/ASTDX-Normal"))()
+   end    
+})
+
+-- Forsaken
+
+local FRTab = Window:MakeTab({
+   Name = "🔪 forsaken",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local 	twentyoneSection = FRTab:AddSection({
+   Name = "🧰 Auto Generator"
+})
+
+FRTab:AddButton({
+   Name = "Mandy Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/MaybeNotMandy/forsaken/refs/heads/main/sae"))()
+   end    
+})
+
+FRTab:AddButton({
+   Name = "Photon Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/NittarPP/PhotonScript/refs/heads/main/Loading/Loading.lua"))()
+   end    
+})
+
+FRTab:AddButton({
+   Name = "Saryn Hub",
+   Callback = function()
+	  loadstring(game:HttpGet('https://raw.githubusercontent.com/Saiky988/Saryn-Hub/refs/heads/main/Saryn%25Hub%25Beta.lua'))()
+   end    
+})
+
+-- mm2
+
+local MMTab = Window:MakeTab({
+   Name = "🔪 MM2",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local 	twentytwoSection = MMTab:AddSection({
+   Name = "🏹 Auto Kill"
+})
+
+MMTab:AddButton({
+   Name = "R3TH Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/mzkv/mm2/refs/heads/main/xHUB", true))()
+   end    
+})
+
+MMTab:AddButton({
+   Name = "SNT Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/Snowt-Team/SNT-HUB/refs/heads/main/MurderMystery2.txt"))()
+   end    
+})
+
+
+MMTab:AddButton({
+   Name = "FOGOTY Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/FOGOTY/mm2-piano-reborn/refs/heads/main/scr"))()
+   end    
+})
+
+MMTab:AddButton({
+   Name = "Xhub Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/mzkv/mm2/refs/heads/main/xHUB", true))()
+   end    
+})
+
+-- Blade Ball
+
+local BBTab = Window:MakeTab({
+   Name = "⚾ Blade Ball",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local 	twentythereeSection = BBTab:AddSection({
+   Name = "🏹 Auto Kill"
+})
+
+BBTab:AddButton({
+   Name = "Lurnax Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/mzkv/LUNAR/refs/heads/main/BladeBall", true))()
+   end    
+})
+
+BBTab:AddButton({
+   Name = "Bakugan Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/SoyAdriYT/PitbullHubX/refs/heads/main/PitbullHubX.lua", true))()
+   end    
+})
+
+BBTab:AddButton({
+   Name = "Nexam Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6af56c1753ac6679dee3acbd1fd952e5.lua"))()
+   end    
+})
+
+
+
 
 OrionLib:Init()
