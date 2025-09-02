@@ -1,7 +1,7 @@
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
 
 local Window = OrionLib:MakeWindow({
-	Name = "ROBLOKI HUB 7.0.0",
+	Name = "ROBLOKI HUB 7.5.0",
 	HidePremium = false,
 	SaveConfig = true,
 	ConfigFolder = "Project segredo"
@@ -86,21 +86,21 @@ BFTab:AddButton({
 })
 
 BFTab:AddButton({
-	Name = "Redz Hub",
+	Name = "Astral Hub",
 	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua'))()
+		loadstring(game:HttpGet("https://rawscripts.net/raw/Blox-Fruits-ASTRAL-29222"))()
 	end    
 })
 
 BFTab:AddButton({
 	Name = "Cokka Hub",
 	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/CokkaHub.lua'))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Xero2409/XeroHub/refs/heads/main/main.lua"))()
 	end    
 })
 
 BFTab:AddButton({
-	Name = "Achelmy Hub",
+	Name = "Xero Hub",
 	Callback = function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/DENGHUB2025/HUGHUB/main/WL'))()
 	end    
@@ -149,6 +149,34 @@ RBTab:AddButton({
 	Name = "Beecon Hub",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconBossScript/BeeconHub/main/BeeconHub"))()
+	end    
+})
+
+RBTab:AddButton({
+	Name = "Chill Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/tienkhanh1/spicy/main/Chilli.lua"))()
+	end    
+})
+
+RBTab:AddButton({
+	Name = "Lurk Hub V4",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/egor2078f/lurkhackv4/refs/heads/main/main.lua", true))()
+	end    
+})
+
+RBTab:AddButton({
+	Name = "Miranda Free Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastefy.app/9YIyWc7E/raw"))()
+	end    
+})
+
+RBTab:AddButton({
+	Name = "Lennon Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastefy.app/NU4lqGZe/raw"))()
 	end    
 })
 
@@ -668,6 +696,20 @@ FRTab:AddButton({
    end    
 })
 
+FRTab:AddButton({
+   Name = "Yoxi Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/Yomkaa/forsaken-YOXI-HUB/refs/heads/main/forsaken%20YOXI%20HUB",true))()
+   end    
+})
+
+FRTab:AddButton({
+   Name = "Sigma Hub",
+   Callback = function()
+	  loadstring(game:HttpGet('https://raw.githubusercontent.com/sigmaboy-sigma-boy/sigmaboy-sigma-boy/refs/heads/main/StaminaSettings.ESP.PIDC.raw'))()
+   end    
+})
+
 -- mm2
 
 local MMTab = Window:MakeTab({
@@ -739,6 +781,51 @@ BBTab:AddButton({
    Name = "Nexam Hub",
    Callback = function()
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6af56c1753ac6679dee3acbd1fd952e5.lua"))()
+   end    
+})
+
+-- Hide And seek
+
+local HSTab = Window:MakeTab({
+   Name = "🎎 Hide and Seek",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local 	twentyfourSection = HSTab:AddSection({
+   Name = "🎭 Auto win"
+})
+
+HSTab:AddButton({
+   Name = "Vape Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/inkgame.lua", true))()
+   end    
+})
+
+HSTab:AddButton({
+   Name = "Ringta Hub",
+   Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/inkgames.github.io/refs/heads/main/ringta.lua"))()
+   end    
+})
+
+-- Aba SkyWars
+
+local SWTab = Window:MakeTab({
+   Name = "🏕 SkyWars",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local 	twentyfiveSection = SWTab:AddSection({
+   Name = "🎭 Auto win"
+})
+
+SWTab:AddButton({
+   Name = "Shadow Hub",
+   Callback = function()
+	  loadstring(game:HttpGet('https://raw.githubusercontent.com/ShadowBey01/shadowfreev2/refs/heads/main/shadowv2free'))()
    end    
 })
 
