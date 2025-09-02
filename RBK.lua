@@ -301,7 +301,7 @@ local SLSTab = Window:MakeTab({
 })
 
 local sevenSection = SLSTab:AddSection({
-	Name = "Farms and Hitbox"
+	Name = "⚽ Farms and Hitbox"
 })
 
 SLSTab:AddButton({
@@ -819,7 +819,7 @@ local SWTab = Window:MakeTab({
 })
 
 local 	twentyfiveSection = SWTab:AddSection({
-   Name = "🎭 Auto win"
+   Name = "🏔 Auto win"
 })
 
 SWTab:AddButton({
