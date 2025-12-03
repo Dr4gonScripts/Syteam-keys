@@ -1,14 +1,22 @@
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
 
 local Window = OrionLib:MakeWindow({
-	Name = "ROBLOKI HUB 7.5.0",
+	Name = "ROBLOKI HUB - 8.0",
 	HidePremium = false,
 	SaveConfig = true,
-	ConfigFolder = "Project segredo"
+	ConfigFolder = "ScriptRBK"
 })
 
+OrionLib:MakeNotification({
+	Name = "Robloki Hub",
+	Content = "Script carregando... - Entre: https://discord.gg/nb57dbyWW4",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+
 local Tab = Window:MakeTab({
-	Name = "😸 Muscles Legends - Main",
+	Name = "😸 Muscles Legends",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
@@ -32,9 +40,9 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "KTM - KTMx2025",
+	Name = "KTM - KTMONTOP",
 	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/zapstreams123/KTMHUB/refs/heads/main/PublicVersion'))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/zapstreams123/Key-System/refs/heads/main/Free",true))()
 	end    
 })
 
@@ -64,6 +72,34 @@ Tab:AddButton({
 	Name = "Doca V1",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/CAXAP26BKyCH/-Doca-V1/refs/heads/main/Free%20Version"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "King Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/DPCWj3wK"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Silence Hub - SilenceXHenne",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/imhenne187/Silence/refs/heads/main/Loader.lua"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Private Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/felipefelipao317-tech/Muscle-Legends/refs/heads/main/MUSCLE-LEGENDS.lua"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "AX Hub - 404notaSkid",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/W4ttziez/Muscle-Legends/main/AX%20HUB.lua"))()
 	end    
 })
 
@@ -833,3 +869,4 @@ SWTab:AddButton({
 
 
 OrionLib:Init()
+OrionLib:Destroy()
